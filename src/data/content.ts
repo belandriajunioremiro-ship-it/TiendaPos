@@ -3,9 +3,9 @@
 
 export const site = {
   name: "TiendaPOS",
-  tagline: "El POS que entiende la facturación fiscal de Latinoamérica",
+  tagline: "POS que entiende la facturación fiscal LATAM",
   description:
-    "Sistema de punto de venta multi-tenant, multi-moneda y multi-país. Vende, factura, controla inventario y gestiona créditos desde un solo sistema. Nueve países, multimoneda real e IGTF incluido.",
+    "Sistema POS multi-país y multi-moneda. Vende, factura y controla inventario desde un solo sistema. 9 países, IGTF incluido.",
   whatsapp: "+58 424-725-3544",
   email: "hola@tiendapos.com",
   rif: "J-12345678-9",
