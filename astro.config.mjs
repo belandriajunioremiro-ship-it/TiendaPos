@@ -12,7 +12,7 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
+      lastmod: new Date('2026-06-27'),
       filter: (page) => !page.includes('/404'),
     }),
   ],

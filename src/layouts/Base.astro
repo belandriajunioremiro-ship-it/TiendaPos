@@ -27,6 +27,15 @@ const ldOrganization = {
   name: site.name,
   url: Astro.site?.href || "https://tiendapos-app.vercel.app/",
   description: site.description,
+  logo: `${Astro.site}og-image.png`,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.direccion,
+    addressLocality: "San Cristóbal",
+    addressRegion: "Táchira",
+    addressCountry: "VE",
+  },
+  vatID: site.rif,
   contactPoint: {
     "@type": "ContactPoint",
     telephone: site.whatsapp,
@@ -45,6 +54,7 @@ const ldSoftware = {
     "@type": "Offer",
     price: "0",
     priceCurrency: "USD",
+    priceValidUntil: "2027-12-31",
   },
 };
 
@@ -79,6 +89,10 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={title} />
 
     <!-- SEO: canonical + Open Graph -->
     <link rel="canonical" href={canonical} />
@@ -92,7 +106,6 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
     <meta name="twitter:site" content="@tiendapos" />
     <meta name="twitter:creator" content="@tiendapos" />
     <meta name="robots" content="index, follow" />
-    <link rel="alternate" href={canonical} hreflang="es-VE" />
     <link rel="alternate" href={canonical} hreflang="es" />
 
     <!-- JSON-LD Structured Data -->
