@@ -17,7 +17,10 @@ export default function WhatsAppChat() {
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent | TouchEvent) => {
-      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      const toggle = document.querySelector("[data-chat-toggle]");
+      if (toggle?.contains(target)) return;
+      if (panelRef.current && !panelRef.current.contains(target)) {
         setOpen(false);
       }
     };
@@ -143,6 +146,7 @@ export default function WhatsAppChat() {
 
       {/* Floating button */}
       <button
+        data-chat-toggle
         onClick={() => setOpen(!open)}
         class={`relative pointer-events-auto w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95 shrink-0 ${
           open
