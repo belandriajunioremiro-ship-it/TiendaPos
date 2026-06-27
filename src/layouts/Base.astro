@@ -12,6 +12,48 @@ const {
   title = `${site.name} — ${site.tagline}`,
   description = site.description,
 } = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = `${Astro.site}og-image.png`;
+
+const ldWebSite = {
+  "@type": "WebSite",
+  name: site.name,
+  url: Astro.site?.href || "https://tiendapos.com/",
+};
+
+const ldOrganization = {
+  "@type": "Organization",
+  name: site.name,
+  url: Astro.site?.href || "https://tiendapos.com/",
+  description: site.description,
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: site.whatsapp,
+    contactType: "customer service",
+    email: site.email,
+  },
+};
+
+const ldSoftware = {
+  "@type": "SoftwareApplication",
+  name: site.name,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description: site.description,
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+
+const ldGraph = {
+  "@context": "https://schema.org",
+  "@graph": [ldWebSite, ldOrganization, ldSoftware],
+};
+
+const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}</script>`;
 ---
 
 <!doctype html>
@@ -29,12 +71,32 @@ const {
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap"
       rel="stylesheet"
+      media="print" onload="this.media='all'"
     />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" /></noscript>
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- SEO: canonical + Open Graph -->
+    <link rel="canonical" href={canonical} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="es_VE" />
+    <meta name="twitter:site" content="@tiendapos" />
+    <meta name="twitter:creator" content="@tiendapos" />
+    <meta name="robots" content="index, follow" />
+    <link rel="alternate" href={canonical} hreflang="es-VE" />
+    <link rel="alternate" href={canonical} hreflang="es" />
+
+    <!-- JSON-LD Structured Data -->
+    <Fragment set:html={ldScript} />
 
     <!-- Theme color -->
     <meta name="theme-color" content="#0A0A0B" />

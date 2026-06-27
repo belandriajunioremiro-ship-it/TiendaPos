@@ -6,11 +6,16 @@ import {
   Wrench, Grid3x3, Repeat, Barcode, Archive,
   Search, Users, CreditCard, Smartphone,
 } from "lucide-astro";
+import WaButton from "../components/WaButton";
+import { waUrl } from "../data/whatsapp";
 
 const negocios = [
   {
     titulo: "Mini Market",
+    img: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=600&fit=crop&auto=format",
     desc: "Todo en uno: ventas rápidas, inventario en tiempo real y múltiples proveedores.",
+    waMsg: "Hola, quiero información sobre TiendaPOS para mi Mini Market. Me interesa escaneo rápido, alertas de stock, gestión de proveedores y arqueo de caja.",
+    waBtn: "Quiero mi mini market listo",
     icon: Store,
     items: [
       { icon: Scan, text: "Escaneo rápido con código de barras" },
@@ -23,7 +28,10 @@ const negocios = [
   },
   {
     titulo: "Farmacia",
+    img: "https://images.unsplash.com/photo-1631549916768-4119b2e5f926?w=800&h=500&fit=crop&auto=format",
     desc: "Control de medicamentos por lote, vencimientos FEFO y tracking de ventas restringidas.",
+    waMsg: "Hola, quiero información sobre TiendaPOS para mi Farmacia. Necesito control de lotes, alertas FEFO, reportes por medicamento y seguimiento de productos controlados.",
+    waBtn: "Quiero controlar mis lotes",
     icon: Pill,
     items: [
       { icon: Package, text: "Control de lotes con fecha de vencimiento" },
@@ -36,7 +44,10 @@ const negocios = [
   },
   {
     titulo: "Licorería",
+    img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&h=500&fit=crop&auto=format",
     desc: "Gestión de inventario por presentaciones, lotes de importación y precios por volumen.",
+    waMsg: "Hola, quiero información sobre TiendaPOS para mi Licorería. Me interesa variantes por tamaño, lotes de importación, precios por volumen y reportes de rotación.",
+    waBtn: "Quiero gestionar mi inventario",
     icon: Wine,
     items: [
       { icon: Ruler, text: "Variantes por tamaño: 750ml, 1L, 2L" },
@@ -49,7 +60,10 @@ const negocios = [
   },
   {
     titulo: "Ferretería",
+    img: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=600&fit=crop&auto=format",
     desc: "Miles de SKUs organizados por categorías, medidas y equivalencias.",
+    waMsg: "Hola, quiero información sobre TiendaPOS para mi Ferretería. Tengo miles de SKUs y necesito categorías jerárquicas, unidades de medida y control de stock mínimo.",
+    waBtn: "Quiero organizar productos por categorías",
     icon: Wrench,
     items: [
       { icon: Grid3x3, text: "Categorías jerárquicas: electricidad, plomería, construcción" },
@@ -62,7 +76,10 @@ const negocios = [
   },
   {
     titulo: "Abasto / Bodega",
+    img: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&h=600&fit=crop&auto=format",
     desc: "Rápido en el mostrador, ventas al crédito gestionadas, multimoneda e IGTF.",
+    waMsg: "Hola, quiero información sobre TiendaPOS para mi Abasto/Bodega. Necesito control de crédito, pagos mixtos, multimoneda e IGTF automático.",
+    waBtn: "Quiero cobrar en varias monedas",
     icon: ShoppingBag,
     items: [
       { icon: Search, text: "Búsqueda instantánea por nombre o código" },
@@ -106,7 +123,7 @@ const negocios = [
                 <h3 class="text-2xl lg:text-3xl font-display font-bold text-zinc-100">{n.titulo}</h3>
               </div>
               <p class="text-zinc-400 leading-relaxed mb-6">{n.desc}</p>
-              <ul class="space-y-2.5">
+              <ul class="gsap-stagger space-y-2.5">
                 {n.items.map((item) => {
                   const ItemIcon = item.icon;
                   return (
@@ -114,31 +131,31 @@ const negocios = [
                       <span class="w-5 h-5 rounded-full bg-amber/10 flex items-center justify-center shrink-0 mt-0.5">
                         <ItemIcon size={12} class="text-amber" />
                       </span>
-                      <span class="text-zinc-300 text-sm">{item.text}</span>
+                      <span class="text-zinc-100 text-sm font-medium">{item.text}</span>
                     </li>
                   );
                 })}
               </ul>
+              <WaButton href={waUrl(n.waMsg)} label={n.waBtn} />
             </div>
 
-            <!-- Visual -->
-            <div class={`${isLeft ? "lg:order-2" : "lg:order-1"}`}>
-              <div class="relative rounded-xl bg-zinc-900/60 border border-zinc-800/60 p-6 lg:p-8 min-h-[260px] flex items-center justify-center overflow-hidden group hover:border-amber/20 transition-colors">
-                <div class="absolute -top-12 -right-12 w-40 h-40 bg-amber/5 rounded-full blur-2xl group-hover:bg-amber/10 transition-all" />
-                <div class="grid grid-cols-3 gap-3 w-full">
-                  {n.items.map((item) => {
-                    const ItemIcon = item.icon;
-                    return (
-                      <div class="flex flex-col items-center gap-2 text-center">
-                        <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center group-hover:border-amber/20 group-hover:bg-amber/[0.03] transition-all">
-                          <ItemIcon size={22} class="text-zinc-500 group-hover:text-amber/70 transition-colors" />
-                        </div>
-                        <span class="text-[10px] text-zinc-600 leading-tight line-clamp-2">
-                          {item.text.length > 28 ? item.text.substring(0, 28) + "…" : item.text}
-                        </span>
-                      </div>
-                    );
-                  })}
+            <!-- Visual: imagen del rubro -->
+            <div class={`gsap-scale-in ${isLeft ? "lg:order-2" : "lg:order-1"}`} style={`transition-delay: ${i * 0.1}s`}>
+              <div class="relative w-full h-full min-h-[300px] lg:min-h-[320px] rounded-xl overflow-hidden group">
+                <img
+                  src={n.img}
+                  alt={n.titulo}
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-zinc-900/90 via-zinc-900/20 to-transparent" />
+                <div class="absolute bottom-4 left-4">
+                  <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 rounded-lg bg-amber/20 backdrop-blur-sm flex items-center justify-center">
+                      <Icon size={16} class="text-amber" />
+                    </div>
+                    <span class="text-zinc-100 font-display font-bold text-lg">{n.titulo}</span>
+                  </div>
                 </div>
               </div>
             </div>

@@ -1,9 +1,25 @@
 ---
 import { faq } from "../data/content";
 import { ChevronDown, HelpCircle } from "lucide-astro";
+
+const ldFaq = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+
+const ldFaqScript = `<script type="application/ld+json">${JSON.stringify(ldFaq)}</script>`;
 ---
 
 <section id="faq" class="relative overflow-hidden py-20 lg:py-28 bg-dark-tertiary">
+  <Fragment set:html={ldFaqScript} />
   <!-- Background -->
   <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
   <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
