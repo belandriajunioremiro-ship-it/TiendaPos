@@ -51,8 +51,7 @@ import { site, paises } from "../data/content";
           <p>TiendaPOS está diseñado para operar en los siguientes países de Latinoamérica, adaptando sus funcionalidades a los requisitos fiscales de cada jurisdicción:</p>
           <div class="gsap-fade-up flex flex-wrap gap-3 mt-6">
             {paises.map((p) => (
-              <div class="flex items-center gap-3 px-4 py-3 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-amber/30 hover:bg-zinc-900 transition-all duration-300">
-                <span class="text-2xl leading-none">{p.flag}</span>
+              <div class="px-4 py-3 rounded-xl bg-zinc-900/60 border border-zinc-800 hover:border-amber/30 hover:bg-zinc-900 transition-all duration-300">
                 <span class="font-display font-semibold text-zinc-100 text-sm">{p.nombre}</span>
               </div>
             ))}
