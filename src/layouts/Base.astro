@@ -111,6 +111,19 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
     <meta name="theme-color" content="#0A0A0B" />
   </head>
   <body class="antialiased">
+    <!-- Scroll progress bar -->
+    <div id="progress-bar" class="fixed top-0 left-0 z-[99] h-[3px] bg-amber shadow-lg shadow-amber/30" style="width: 0%; transition: width 80ms linear;"></div>
+
+    <script>
+      const bar = document.getElementById("progress-bar");
+      if (bar) {
+        window.addEventListener("scroll", () => {
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          bar.style.width = h > 0 ? `${(window.scrollY / h) * 100}%` : "0%";
+        }, { passive: true });
+      }
+    </script>
+
     <slot />
 
     <WhatsAppChat client:idle />
