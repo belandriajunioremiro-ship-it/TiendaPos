@@ -5,7 +5,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: "https://tiendapos.com",
+  site: "https://tiendapos-app.vercel.app",
   integrations: [react(), mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tiendapos.com/sitemap-index.xml
+Sitemap: https://tiendapos-app.vercel.app/sitemap-index.xml
