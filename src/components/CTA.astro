@@ -1,0 +1,51 @@
+---
+import { site } from "../data/content";
+import { Check } from "lucide-astro";
+import { FaWhatsapp } from "react-icons/fa";
+import { waUrl } from "../data/whatsapp";
+---
+
+<section id="cta" class="relative overflow-hidden py-24 lg:py-32">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary pointer-events-none" />
+  <div class="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+
+  <!-- Glow orbs -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-amber/10 rounded-full blur-[100px] pointer-events-none" />
+  <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-amber/5 rounded-full blur-[80px] pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="max-w-5xl mx-auto text-center px-4 lg:px-8">
+      <h2 class="gsap-fade-up text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-100 leading-tight">
+        ¿LISTO PARA LLEVAR TU NEGOCIO<br class="hidden sm:block" />
+        AL SIGUIENTE NIVEL?
+      </h2>
+
+      <p class="gsap-fade-up mt-6 text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto" style="transition-delay: 0.1s;">
+        <span class="font-semibold text-zinc-200">Facturación fiscal, inventario en tiempo real y gestión de créditos.</span>
+        <br />
+        Todo en un sistema diseñado para Latinoamérica. Empieza tu prueba de 14 días hoy —
+        sin tarjeta de crédito, sin compromiso, cancela cuando quieras.
+      </p>
+
+      <div class="gsap-fade-up mt-10" style="transition-delay: 0.2s;">
+        <a
+          href={waUrl("Hola quiero información desde la seccion CTA")}
+          class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg bg-amber text-zinc-900 font-semibold text-lg transition-all duration-300 hover:bg-amber/90 hover:scale-105 shadow-lg shadow-amber/20"
+        >
+          <FaWhatsapp size={22} />
+          <span>¿Tienes alguna duda? Escríbenos por WhatsApp</span>
+        </a>
+      </div>
+
+      <div class="gsap-fade-up mt-12 flex flex-wrap justify-center items-center gap-8 text-sm text-zinc-500 font-mono" style="transition-delay: 0.3s;">
+        {["9 países LATAM", "Configura en 5 min", "Cancela cuando quieras"].map((t) => (
+          <div class="flex items-center gap-2">
+            <Check size={16} class="text-amber" />
+            <span class="font-bold text-zinc-300">{t}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

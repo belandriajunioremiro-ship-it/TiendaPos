@@ -1,0 +1,105 @@
+---
+import { caracteristicas } from "../data/content";
+import { ShoppingCart, FileText, Package, CreditCard, Check } from "lucide-astro";
+
+const iconMap: Record<string, any> = {
+  ShoppingCart,
+  FileText,
+  Package,
+  CreditCard,
+};
+---
+
+<section id="caracteristicas" class="relative overflow-hidden py-20 lg:py-28 bg-dark-tertiary">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="max-w-3xl mb-12">
+      <h2 class="gsap-fade-up text-zinc-100">
+        Cada módulo diseñado para resolver<br />
+        <span class="text-zinc-500">los problemas reales de LatAm.</span>
+      </h2>
+    </div>
+
+    <div class="gsap-stagger grid md:grid-cols-2 gap-5">
+      {caracteristicas.map((c, i) => {
+        const Icono = iconMap[c.icono];
+        return (
+          <div class={`group relative p-6 lg:p-8 pt-10 rounded-xl border transition-all duration-300 hover-glow ${
+            i % 2 === 0
+              ? 'bg-zinc-900/60 border-zinc-800/60 hover:border-amber/30'
+              : 'bg-zinc-900/30 border-zinc-800/30 hover:border-amber/30'
+          }`}>
+            <!-- Module number badge -->
+            <div class="absolute top-0 right-0 px-3 py-1.5 rounded-tr-xl rounded-bl-lg bg-amber text-zinc-900 text-[11px] font-mono font-bold">
+              MÓDULO {String(i + 1).padStart(2, "0")}
+            </div>
+
+            <div class="w-12 h-12 rounded-full bg-amber/10 border border-amber/30 flex items-center justify-center text-amber mb-5">
+              <Icono size={24} />
+            </div>
+
+            <!-- Content -->
+            <h3 class="text-zinc-100 font-semibold text-xl mb-3">
+              {c.titulo}
+            </h3>
+
+            <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+              {c.detalle}
+            </p>
+
+            <!-- Bullets -->
+            <ul class="space-y-3">
+              {c.bullets.map((b) => (
+                <li class="flex items-start gap-2.5 text-sm text-zinc-300">
+                  <div class="flex-shrink-0 mt-1 w-1.5 h-1.5 rounded-full bg-amber" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+
+            <!-- Visual preview -->
+            <div class="mt-6 p-4 rounded-lg bg-zinc-900/80 border border-zinc-800 font-mono text-xs">
+              {c.id === "pos" && (
+                <div>
+                  <div class="flex justify-between text-zinc-500 mb-2">PAGO MIXTO</div>
+                  <div class="flex gap-2">
+                    <span class="px-2 py-1 bg-amber/80 text-zinc-900 text-[10px] font-bold rounded">EFECTIVO $10</span>
+                    <span class="px-2 py-1 bg-zinc-800 text-zinc-400 text-[10px] rounded">TARJETA $8.62</span>
+                  </div>
+                </div>
+              )}
+              {c.id === "facturacion" && (
+                <div>
+                  <div class="text-zinc-500 mb-2">RIF: <span class="text-amber">J-12345678-9</span></div>
+                  <div class="text-zinc-400">IVA 16% • Pagada</div>
+                </div>
+              )}
+              {c.id === "inventario" && (
+                <div>
+                  <div class="flex items-center justify-between">
+                    <span class="text-zinc-400">Stock</span>
+                    <span class="text-amber">12 alertas</span>
+                  </div>
+                  <div class="mt-2 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                    <div class="h-full w-3/4 bg-amber rounded-full" />
+                  </div>
+                </div>
+              )}
+              {c.id === "creditos" && (
+                <div>
+                  <div class="flex justify-between text-zinc-400">
+                    <span>Por cobrar</span>
+                    <span class="text-amber nums">$3,230</span>
+                  </div>
+                  <div class="text-amber text-[10px] mt-1">↓ 15% este mes</div>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

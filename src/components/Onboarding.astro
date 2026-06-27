@@ -1,0 +1,57 @@
+---
+import { pasosOnboarding } from "../data/content";
+import { ArrowRight, Check } from "lucide-astro";
+---
+
+<section class="relative overflow-hidden py-20 lg:py-28 bg-dark-tertiary">
+  <!-- Background -->
+  <div class="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
+  <div class="absolute top-0 left-1/4 w-64 h-64 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="max-w-3xl mb-12">
+      <h2 class="gsap-fade-up text-zinc-100">
+        De cero a tu primera venta<br />
+        <span class="text-zinc-500">en 4 pasos</span>
+      </h2>
+      <p class="gsap-fade-up mt-5 text-lg text-zinc-400 max-w-2xl" style="transition-delay: 0.1s;">
+        Sin configurar impuestos a mano ni perder horas en Excel. Elige tu país, tu negocio y empieza a facturar como un profesional.
+      </p>
+    </div>
+
+    <div class="gsap-stagger grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {pasosOnboarding.map((p, i) => (
+        <div class="group relative p-6 lg:p-7 pt-10 rounded-xl bg-zinc-900/50 border border-zinc-800/50 hover:border-amber/30 transition-all duration-300 hover-glow">
+          <div class={`absolute top-0 left-0 px-3 py-1.5 rounded-tl-xl rounded-br-lg bg-zinc-700/80 text-zinc-300 text-[11px] font-mono font-bold`}>
+            {(i + 1).toString().padStart(2, '0')}
+          </div>
+          <span class="absolute top-0 right-0 px-3 py-1.5 rounded-tr-xl rounded-bl-lg bg-amber/15 text-amber border border-amber/30 text-[10px] font-mono font-bold">
+            {p.tiempo}
+          </span>
+          <h3 class="text-zinc-100 font-semibold text-lg mb-3">
+            {p.titulo}
+          </h3>
+          <p class="text-sm text-zinc-500 leading-relaxed">
+            {p.detalle}
+          </p>
+
+          <!-- Arrow connector on hover -->
+          {i < 3 && (
+            <div class="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowRight size={20} class="text-amber/50" />
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="gsap-fade-up mt-10 flex items-center gap-6 text-sm text-zinc-600 font-mono">
+      {["Trial automático", "14 días gratis", "Sin tarjeta de crédito"].map((text) => (
+        <div class="flex items-center gap-2">
+          <Check size={14} class="text-emerald-500" />
+          <span>{text}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

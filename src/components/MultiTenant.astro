@@ -1,0 +1,87 @@
+---
+import { tiendasTenant } from "../data/content";
+import { Building2, Lock, Check, Shield } from "lucide-astro";
+---
+
+<section id="por-que" class="relative overflow-hidden py-20 lg:py-28 bg-dark-secondary">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <!-- Copy -->
+      <div>
+        <h2 class="gsap-fade-up text-zinc-100">
+          Una plataforma.<br />
+          <span class="text-amber">Múltiples tiendas aisladas.</span>
+        </h2>
+
+        <p class="gsap-fade-up mt-6 text-lg text-zinc-400 max-w-lg leading-relaxed" style="transition-delay: 0.1s;">
+          Cada negocio opera en su propio entorno con datos separados a nivel de base de datos.
+          Gestiona franquicias y cadenas desde un panel central con reportes consolidados.
+        </p>
+
+        <ul class="gsap-stagger mt-8 space-y-4">
+          {[
+            "Aislamiento total de datos entre tiendas",
+            "Administración centralizada y unificada",
+            "Ideal para franquicias y cadenas comerciales",
+          ].map((item) => (
+            <li class="flex items-center gap-3 text-zinc-300">
+              <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <Check size={12} class="text-emerald-400" />
+              </div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Panel de tiendas -->
+      <div class="gsap-slide-right">
+        <div class="rounded-xl overflow-hidden bg-zinc-900/80 border border-zinc-800 shadow-xl">
+          <!-- Header -->
+          <div class="flex items-center justify-between px-5 py-3 border-b border-zinc-800 bg-zinc-900/50">
+            <div class="flex items-center gap-2">
+              <Building2 size={14} class="text-amber" />
+              <span class="label-tag text-zinc-500">TIENDAS CONECTADAS</span>
+            </div>
+            <span class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/15 border border-emerald-500/30 rounded text-emerald-400 text-[10px] font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              3 ACTIVAS
+            </span>
+          </div>
+
+          <!-- Stores list -->
+          <div class="p-4 space-y-3">
+            {tiendasTenant.map((t) => (
+              <div class="flex items-center justify-between p-4 rounded-lg bg-zinc-800/40 border border-zinc-700/50 hover:border-zinc-600 hover:bg-zinc-800/60 transition-all">
+                <div>
+                  <div class="text-zinc-100 font-medium">{t.nombre}</div>
+                  <div class="text-zinc-500 text-sm font-mono mt-1">
+                    {t.pais} • {t.usuarios} usuarios
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="text-amber nums text-lg font-bold">{t.ventas}</div>
+                  <div class="text-emerald-400 text-[10px] font-mono uppercase mt-0.5">{t.estado}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Footer -->
+          <div class="flex items-center gap-2 px-5 py-3 border-t border-zinc-800 bg-zinc-900/50">
+            <Shield size={14} class="text-emerald-500" />
+            <span class="label-tag text-zinc-500">DATOS AISLADOS POR TENANT • ENCRIPTADO</span>
+          </div>
+        </div>
+
+        <p class="mt-4 text-xs text-zinc-600 font-mono text-center">
+          Panel central • 3 sedes • 1 login
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,67 @@
+---
+import { ArrowRight, Play, Check, Zap, Shield } from "lucide-astro";
+import { waUrl } from "../data/whatsapp";
+---
+
+<section id="hero" class="relative overflow-hidden pt-24 lg:pt-28 pb-16 lg:pb-24">
+  <!-- Background effects -->
+  <div class="absolute inset-0 bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary pointer-events-none" />
+  <div class="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
+
+  <!-- Glow orbs -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-amber/10 rounded-full blur-[100px] pointer-events-none" />
+  <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-amber/5 rounded-full blur-[80px] pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="max-w-5xl mx-auto text-center">
+      <!-- Headline -->
+      <h1 class="gsap-fade-up text-zinc-100 mb-6">
+        <span class="block mb-2">El POS que entiende la</span>
+        <span class="block text-amber whitespace-nowrap">facturación fiscal</span>
+        <span class="block">de Latinoamérica</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="gsap-fade-up mx-auto max-w-2xl text-lg text-zinc-400 leading-relaxed" style="transition-delay: 0.1s;">
+        Vende, factura, controla inventario y gestiona créditos desde un solo sistema.
+        <strong class="text-zinc-200">Nueve países, multimoneda real e IGTF incluido <span class="text-amber text-xs font-bold">(solo Venezuela)</span></strong>
+      </p>
+
+      <!-- CTAs -->
+      <div class="gsap-fade-up mt-8 flex flex-wrap justify-center gap-4" style="transition-delay: 0.15s;">
+        <a
+          href={waUrl("Hola quiero empezar mi prueba gratis desde el Hero")}
+          target="_blank"
+          class="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 hover-lift"
+          style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: #0A0A0B;"
+        >
+          <span class="absolute inset-0 rounded-lg bg-amber/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+          <span class="relative">Comenzar prueba gratis</span>
+          <ArrowRight size={18} class="relative transition-transform group-hover:translate-x-1" />
+        </a>
+        <a
+          href={waUrl("Hola quiero agendar una demo en vivo")}
+          target="_blank"
+          class="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg border border-zinc-700 text-zinc-300 font-semibold text-sm hover:bg-zinc-800/50 hover:border-zinc-600 transition-all"
+        >
+          <Play size={18} class="text-amber" />
+          Ver demo en vivo
+        </a>
+      </div>
+
+      <!-- Trust badges -->
+      <div class="gsap-fade-up mt-8 flex flex-wrap justify-center items-center gap-6" style="transition-delay: 0.2s;">
+        {[
+          { icon: Check, text: "14 días gratis" },
+          { icon: Shield, text: "Sin tarjeta de crédito" },
+          { icon: Zap, text: "5 min configuración" },
+        ].map((item) => (
+          <div class="flex items-center gap-2 text-sm text-zinc-500">
+            <item.icon size={16} class="text-amber" />
+            <span>{item.text}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

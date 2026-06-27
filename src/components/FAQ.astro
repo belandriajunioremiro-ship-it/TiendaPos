@@ -1,0 +1,97 @@
+---
+import { faq } from "../data/content";
+import { ChevronDown, HelpCircle } from "lucide-astro";
+---
+
+<section id="faq" class="relative overflow-hidden py-20 lg:py-28 bg-dark-tertiary">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+  <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="grid lg:grid-cols-[1.3fr_1fr] gap-14 lg:gap-20 items-start">
+      <!-- Left: FAQ content -->
+      <div>
+        <div class="mb-10">
+          <h2 class="gsap-fade-up text-zinc-100">
+            PREGUNTAS FRECUENTES<br />
+            <span class="text-zinc-500">Lo que más nos preguntan antes de empezar.</span>
+          </h2>
+        </div>
+
+        <div class="gsap-stagger space-y-3">
+          {faq.map((item, i) => (
+            <div class="faq-item rounded-xl bg-zinc-900/60 border border-zinc-800/60 overflow-hidden hover:border-zinc-700 transition-colors duration-300">
+              <button
+                class="faq-trigger flex items-center justify-between gap-4 w-full p-5 text-left cursor-pointer"
+                data-index={i}
+              >
+                <span class="text-zinc-100 font-medium text-base leading-snug">
+                  {item.q}
+                </span>
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center transition-transform duration-300">
+                  <ChevronDown size={18} class="text-amber transition-transform duration-300 faq-chevron" />
+                </div>
+              </button>
+              <div class="faq-answer px-5 text-sm text-zinc-400 leading-relaxed border-t border-zinc-800/50">
+                <div class="pt-4 pb-5">
+                  {item.a}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Animated question mark -->
+      <div class="hidden lg:flex items-start justify-center sticky top-48 pt-8">
+        <div class="relative">
+          <div class="absolute inset-0 bg-amber/10 rounded-full blur-[120px] animate-pulse" />
+          <div class="relative w-80 h-80 rounded-full bg-zinc-900/60 border border-zinc-800/60 flex items-center justify-center animate-float">
+            <span class="text-amber/20 font-display font-black select-none" style="font-size: 18rem; line-height: 1;">?</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+  .faq-item.open .faq-chevron {
+    transform: rotate(180deg);
+  }
+  .faq-item.open .faq-answer {
+    max-height: 500px;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".faq-trigger").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      const isOpen = item.classList.contains("open");
+
+      // Close all
+      document.querySelectorAll(".faq-item.open").forEach((el) => {
+        el.classList.remove("open");
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add("open");
+      }
+    });
+  });
+</script>

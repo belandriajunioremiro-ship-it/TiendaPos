@@ -1,0 +1,40 @@
+---
+import { ticker } from "../data/content";
+import { TrendingUp } from "lucide-astro";
+---
+
+<div class="relative overflow-hidden bg-dark-secondary border-y border-zinc-800">
+  <div class="flex items-center">
+    <div class="shrink-0 px-4 py-3 flex items-center gap-2 text-[10px] font-mono font-bold uppercase tracking-wider bg-amber text-zinc-900 z-10">
+      <TrendingUp size={12} />
+      TASA EN VIVO
+    </div>
+
+    <div class="flex-1 overflow-hidden">
+      <div class="ticker-track flex gap-10 py-3 whitespace-nowrap font-mono text-xs">
+        {[...ticker, ...ticker, ...ticker].map((t) => (
+          <span class="inline-flex items-center gap-2">
+            <span class="label-tag text-zinc-600">{t.etiqueta}</span>
+            <span class="nums text-zinc-100 font-medium">{t.par} {t.valor}</span>
+            <span class="text-zinc-700">|</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .ticker-track {
+    animation: tickerScroll 50s linear infinite;
+  }
+  @keyframes tickerScroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
+    }
+  }
+</style>

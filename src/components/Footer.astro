@@ -1,0 +1,74 @@
+---
+import { site } from "../data/content";
+import { FileText, Shield, Scale } from "lucide-astro";
+import { FaTiktok, FaInstagram } from "react-icons/fa";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden bg-dark-primary min-h-[400px] flex flex-col justify-between">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+
+  <!-- Giant watermark -->
+  <div class="absolute inset-0 flex items-end justify-center pointer-events-none px-4 pb-6">
+    <span
+      class="font-display font-black text-[clamp(5rem,28vw,18rem)] text-zinc-900/35 select-none text-center leading-none"
+      style="letter-spacing: -0.04em;"
+    >
+      TiendaPOS
+    </span>
+  </div>
+
+  <div class="container-main relative py-16 lg:py-20">
+    <div class="relative z-10 flex flex-col items-center text-center max-w-2xl mx-auto">
+      <!-- Brand -->
+      <div class="flex items-center gap-3 mb-5">
+        <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber to-amber-dark flex items-center justify-center font-display font-bold text-3xl text-zinc-900">
+          T
+        </div>
+        <span class="font-display font-bold text-4xl text-zinc-100">
+          TiendaPOS
+        </span>
+      </div>
+
+      <p class="text-zinc-400 leading-relaxed max-w-lg">
+        El sistema de punto de venta que entiende la facturación fiscal de Latinoamérica.
+      </p>
+
+      <!-- Legal links -->
+      <div class="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm">
+        <a href="#" class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-amber transition-colors duration-300">
+          <FileText size={14} />
+          Politica de privacidad
+        </a>
+        <a href="#" class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-amber transition-colors duration-300">
+          <Shield size={14} />
+          Terminos de servicio
+        </a>
+        <a href="#" class="inline-flex items-center gap-1.5 text-zinc-500 hover:text-amber transition-colors duration-300">
+          <Scale size={14} />
+          Aviso legal
+        </a>
+      </div>
+
+      <!-- Social -->
+      <div class="mt-8 flex gap-4">
+        <a
+          href="#"
+          class="w-14 h-14 rounded-full bg-zinc-800/60 border-2 border-amber/30 flex items-center justify-center text-amber hover:bg-amber/20 hover:border-amber/60 hover:scale-110 shadow-lg shadow-amber/10 transition-all duration-300"
+          aria-label="TikTok"
+        >
+          <FaTiktok size={24} />
+        </a>
+        <a
+          href="#"
+          class="w-14 h-14 rounded-full bg-zinc-800/60 border-2 border-amber/30 flex items-center justify-center text-amber hover:bg-amber/20 hover:border-amber/60 hover:scale-110 shadow-lg shadow-amber/10 transition-all duration-300"
+          aria-label="Instagram"
+        >
+          <FaInstagram size={26} />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,112 @@
+---
+import { monedas } from "../data/content";
+import { Coins, Check, TrendingUp, ArrowDownUp } from "lucide-astro";
+---
+
+<section class="relative overflow-hidden py-20 lg:py-28 bg-dark-tertiary">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-pattern opacity-15 pointer-events-none" />
+  <div class="absolute top-1/3 -left-32 w-80 h-80 bg-amber/10 rounded-full blur-3xl pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+      <!-- Panel de tasas -->
+      <div class="gsap-slide-left order-2 lg:order-1">
+        <div class="rounded-xl overflow-hidden bg-zinc-900/80 border border-zinc-800 shadow-xl">
+          <!-- Header -->
+          <div class="flex items-center justify-between px-5 py-3 border-b border-zinc-800 bg-zinc-900/50">
+            <div class="flex items-center gap-2">
+              <Coins size={14} class="text-amber" />
+              <span class="label-tag text-zinc-500">TASAS DE CAMBIO DEL DÍA</span>
+            </div>
+            <span class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/15 border border-emerald-500/30 rounded text-emerald-400 text-[10px] font-mono">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              EN VIVO
+            </span>
+          </div>
+
+          <!-- Rates -->
+          <div class="p-4 space-y-1">
+            {monedas.map((m) => (
+              <div class="flex items-center justify-between py-3 px-4 rounded-lg hover:bg-zinc-800/30 transition-colors">
+                <div class="flex items-center gap-4">
+                  <span class="nums text-amber font-bold text-lg w-12">{m.codigo}</span>
+                  <span class="text-zinc-400 text-sm">{m.nombre}</span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <span class="nums text-zinc-100 text-lg">{m.tasa}</span>
+                  <div class={`flex items-center gap-1 px-2 py-1 rounded ${
+                    m.variacion > 0
+                      ? 'bg-emerald-500/15 text-emerald-400'
+                      : m.variacion < 0
+                        ? 'bg-red-500/15 text-red-400'
+                        : 'bg-zinc-800 text-zinc-500'
+                  }`}>
+                    {m.variacion > 0 ? <TrendingUp size={12} /> : m.variacion < 0 ? <ArrowDownUp size={12} /> : null}
+                    <span class="text-xs font-mono">{m.cambio}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Footer -->
+          <div class="px-5 py-3 border-t border-zinc-800 bg-zinc-900/50">
+            <div class="flex items-center gap-2 text-amber text-sm font-mono">
+              <Check size={14} />
+              <span>IGTF 3% INCLUIDO EN PAGOS USD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mixed payment example -->
+        <div class="mt-5 p-5 rounded-xl bg-zinc-900/50 border border-zinc-800">
+          <div class="label-tag text-zinc-600 mb-3">PAGO MIXTO EJEMPLO</div>
+          <div class="flex items-baseline gap-3">
+            <span class="text-amber nums text-2xl font-bold">$10 USD</span>
+            <span class="text-zinc-600">+</span>
+            <span class="text-zinc-300 nums text-xl">Bs. 365</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="order-1 lg:order-2">
+        <h2 class="gsap-fade-up text-zinc-100">
+          La tasa correcta,<br />
+          <span class="text-amber">en el momento correcto.</span>
+        </h2>
+
+        <p class="gsap-fade-up mt-6 text-lg text-zinc-400 max-w-lg leading-relaxed" style="transition-delay: 0.1s;">
+          Registra ventas y cobra en la moneda que tu cliente necesite.
+          Pagos mixtos, tasas históricas automáticas e IGTF al 3% calculado sin hojas de cálculo.
+        </p>
+
+        <!-- Currency badges -->
+        <div class="gsap-fade-up mt-6 flex flex-wrap gap-2" style="transition-delay: 0.15s;">
+          {["USD", "VES", "COP", "MXN", "ARS", "PEN", "CLP", "BOB", "UYU"].map((m) => (
+            <span class="px-3 py-1.5 rounded-lg bg-zinc-800/80 border border-zinc-700/50 text-amber text-sm font-mono font-bold hover:border-amber/50 transition-colors">
+              {m}
+            </span>
+          ))}
+        </div>
+
+        <!-- Features -->
+        <ul class="gsap-stagger mt-8 space-y-4">
+          {[
+            "Tasas de cambio históricas automáticas",
+            "Pagos mixtos e IGTF incluido",
+            "9 monedas LATAM soportadas simultáneamente",
+          ].map((item) => (
+            <li class="flex items-center gap-3 text-zinc-300">
+              <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center">
+                <Check size={12} class="text-emerald-400" />
+              </div>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

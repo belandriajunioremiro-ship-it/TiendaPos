@@ -1,0 +1,108 @@
+---
+import { Code2, Terminal, Copy, Check, ArrowRight } from "lucide-astro";
+---
+
+<section class="relative overflow-hidden py-20 lg:py-28 bg-dark-secondary">
+  <!-- Background -->
+  <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+  <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="max-w-3xl mb-12">
+      <h2 class="gsap-fade-up text-zinc-100">
+        112 endpoints listos<br />
+        <span class="text-amber">para integrar.</span>
+      </h2>
+
+      <p class="gsap-fade-up mt-5 text-lg text-zinc-400 max-w-2xl" style="transition-delay: 0.1s;">
+        REST con Laravel Sanctum, respuestas JSON estructuradas y documentación OpenAPI.
+        Conecta tu frontend, app móvil o ERP sin fricción.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-5">
+      <!-- Endpoints -->
+      <div class="p-6 lg:p-8 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
+        <div class="flex items-center gap-2 mb-5">
+          <Terminal size={16} class="text-amber" />
+          <span class="label-tag text-zinc-500">ENDPOINTS DISPONIBLES</span>
+        </div>
+
+        <div class="space-y-2 font-mono text-sm">
+          {[
+            { method: "GET", path: "/api/v1/productos", status: "200" },
+            { method: "POST", path: "/api/v1/ventas", status: "201" },
+            { method: "GET", path: "/api/v1/inventario", status: "200" },
+            { method: "POST", path: "/api/v1/cajas/{id}/abrir", status: "200" },
+          ].map((e) => (
+            <div class="flex items-center gap-3 p-3 rounded-lg bg-zinc-800/40 border border-zinc-700/30 hover:border-zinc-600 transition-colors">
+              <span class={`px-2.5 py-1 text-[10px] font-bold rounded ${
+                e.method === "GET"
+                  ? "bg-emerald-500/20 text-emerald-400"
+                  : "bg-amber/20 text-amber"
+              }`}>{e.method}</span>
+              <span class="text-zinc-300 flex-1">{e.path}</span>
+              <span class="text-zinc-500 nums text-xs">{e.status}</span>
+            </div>
+          ))}
+        </div>
+
+        <ul class="mt-6 space-y-3 text-sm text-zinc-400">
+          {[
+            "112 endpoints RESTful protegidos con Sanctum",
+            "Consume desde cualquier frontend",
+            "Documentación completa y respuestas JSON estructuradas",
+          ].map((item) => (
+            <li class="flex items-start gap-2">
+              <Check size={15} class="shrink-0 mt-0.5 text-emerald-500" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Code snippet -->
+      <div class="p-6 lg:p-8 rounded-xl bg-zinc-900/40 border border-zinc-800/50">
+        <div class="flex items-center justify-between mb-5">
+          <div class="flex items-center gap-2">
+            <Code2 size={16} class="text-amber" />
+            <span class="label-tag text-zinc-500">crear-venta.ts</span>
+          </div>
+          <div class="flex gap-1.5">
+            <span class="px-2 py-1 bg-zinc-800 text-zinc-500 text-[10px] font-mono rounded">TypeScript</span>
+            <span class="px-2 py-1 bg-zinc-800 text-zinc-500 text-[10px] font-mono rounded">UTF-8</span>
+          </div>
+        </div>
+
+        <pre class="font-mono text-xs leading-relaxed text-zinc-300 overflow-x-auto"><code><span class="text-amber">import</span> {"{ TiendaPOS }"} <span class="text-amber">from</span> <span class="text-emerald-400">'@tiendapos/sdk'</span>;
+
+<span class="text-amber">const</span> pos = <span class="text-amber">new</span> <span class="text-amber">TiendaPOS</span>({"{"}
+  tenant: <span class="text-emerald-400">'mi-negocio'</span>,
+  currency: <span class="text-emerald-400">'USD'</span>
+{"}"});
+
+<span class="text-amber">const</span> venta = <span class="text-amber">await</span> pos.ventas.crear({"{"}
+  items: [{"{"} producto: <span class="text-emerald-400">'Harina PAN'</span>, precio: <span class="text-amber">2.5</span>, cantidad: <span class="text-amber">2</span> {"}"}],
+  metodoPago: <span class="text-emerald-400">'mixto'</span>,
+  cliente: {"{"} rif: <span class="text-emerald-400">'J-12345678-9'</span> {"}"}
+{"}"});
+
+console.<span class="text-amber">log</span>(venta.factura.numero);
+<span class="text-zinc-600">// FAC-001-00000042</span></code></pre>
+
+        <div class="mt-5 p-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10">
+          <div class="flex items-center gap-2 text-emerald-400 text-xs font-mono">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            POS CONNECTED • 200 OK
+          </div>
+          <pre class="mt-2 text-xs text-zinc-400 font-mono">{`{
+  "id": 42,
+  "factura": "FAC-001-00000042",
+  "total": 18.62,
+  "moneda": "USD"
+}`}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
