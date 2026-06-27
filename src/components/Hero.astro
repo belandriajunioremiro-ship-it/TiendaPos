@@ -3,7 +3,7 @@ import { ArrowRight, Play } from "lucide-astro";
 import { waUrl } from "../data/whatsapp";
 ---
 
-<section id="hero" class="relative overflow-hidden pt-36 lg:pt-44 pb-16 lg:pb-24">
+  <section id="hero" class="relative overflow-hidden pt-32 sm:pt-36 lg:pt-44 pb-12 sm:pb-16 lg:pb-24">
   <!-- Background effects -->
   <div class="absolute inset-0 bg-gradient-to-b from-dark-primary via-dark-secondary to-dark-primary pointer-events-none" />
   <div class="absolute inset-0 grid-pattern opacity-30 pointer-events-none" />
@@ -13,38 +13,38 @@ import { waUrl } from "../data/whatsapp";
   <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-amber/5 rounded-full blur-[80px] pointer-events-none" />
 
   <div class="container-main relative">
-    <div class="max-w-5xl mx-auto text-center">
+    <div class="mx-auto text-center px-0 sm:px-4">
       <!-- Headline -->
-      <h1 class="gsap-fade-up text-zinc-100 mb-6">
-        <span class="block mb-2">El POS que entiende la</span>
-        <span class="block text-amber whitespace-nowrap">facturación fiscal</span>
+      <h1 class="gsap-fade-up text-zinc-100 mb-5 sm:mb-6 text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-hero leading-[1.1]">
+        <span class="block mb-1 sm:mb-2">El POS que entiende la</span>
+        <span class="block text-amber">facturación fiscal</span>
         <span class="block">de Latinoamérica</span>
       </h1>
 
       <!-- Subheadline -->
-      <p class="gsap-fade-up mx-auto max-w-2xl text-lg text-zinc-400 leading-relaxed" style="transition-delay: 0.1s;">
+      <p class="gsap-fade-up mx-auto max-w-2xl text-sm sm:text-base lg:text-lg text-zinc-400 leading-relaxed px-2 sm:px-0" style="transition-delay: 0.1s;">
         Vende, factura, controla inventario y gestiona créditos desde un solo sistema.
-        <strong class="text-zinc-200">Nueve países, multimoneda real e IGTF incluido <span class="text-amber text-xs font-bold">(solo Venezuela)</span></strong>
+        <strong class="text-zinc-200 block sm:inline"> Nueve países, multimoneda real e IGTF incluido <span class="text-amber text-[10px] sm:text-xs font-bold">(solo Venezuela)</span></strong>
       </p>
 
       <!-- CTAs -->
-      <div class="gsap-fade-up mt-8 flex flex-wrap justify-center gap-4" style="transition-delay: 0.15s;">
+      <div class="gsap-fade-up mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0" style="transition-delay: 0.15s;">
         <a
           href={waUrl("Hola quiero empezar mi prueba gratis desde el Hero")}
           target="_blank"
-          class="group relative inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-semibold text-sm transition-all duration-300 hover-lift"
+          class="group relative inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300 hover-lift w-full sm:w-auto"
           style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: #0A0A0B;"
         >
           <span class="absolute inset-0 rounded-lg bg-amber/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
           <span class="relative">Comenzar prueba gratis</span>
-          <ArrowRight size={18} class="relative transition-transform group-hover:translate-x-1" />
+          <ArrowRight size={16} class="relative transition-transform group-hover:translate-x-1" />
         </a>
         <a
           href={waUrl("Hola quiero agendar una demo en vivo")}
           target="_blank"
-          class="group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg border border-zinc-700 text-zinc-300 font-semibold text-sm hover:bg-zinc-800/50 hover:border-zinc-600 transition-all"
+          class="group inline-flex items-center justify-center gap-2.5 px-5 sm:px-6 py-3 sm:py-3.5 rounded-lg border border-zinc-700 text-zinc-300 font-semibold text-xs sm:text-sm hover:bg-zinc-800/50 hover:border-zinc-600 transition-all w-full sm:w-auto"
         >
-          <Play size={18} class="text-amber" />
+          <Play size={16} class="text-amber shrink-0" />
           Ver demo en vivo
         </a>
       </div>
