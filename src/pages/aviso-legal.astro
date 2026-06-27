@@ -9,21 +9,21 @@ import { site, paises } from "../data/content";
   <Navbar />
   <main class="pt-32 pb-20">
     <div class="container-main max-w-4xl">
-      <a href="/" class="inline-flex items-center gap-2 text-amber hover:text-amber-light transition-colors mb-8 group underline underline-offset-4 decoration-amber/40 hover:decoration-amber">
+      <a href="/" class="gsap-fade-up inline-flex items-center gap-2 text-amber hover:text-amber-light transition-colors mb-8 group underline underline-offset-4 decoration-amber/40 hover:decoration-amber">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform group-hover:-translate-x-1">
           <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <span class="text-sm font-medium">Volver al inicio</span>
       </a>
-      <h1 class="text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Aviso Legal</h1>
-      <p class="text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
+      <h1 class="gsap-fade-up text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Aviso Legal</h1>
+      <p class="gsap-fade-up text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
 
       <div class="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300 leading-relaxed">
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">1. Datos Identificativos</h2>
           <p>En cumplimiento con la legislación vigente en la República Bolivariana de Venezuela y las normativas aplicables en los países donde operamos, se informa:</p>
-          <div class="mt-4 p-6 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-2">
+          <div class="gsap-fade-up mt-4 p-6 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-2">
             <p><strong class="text-zinc-100">Razón Social:</strong> {site.name}</p>
             <p><strong class="text-zinc-100">RIF:</strong> {site.rif}</p>
             <p><strong class="text-zinc-100">Domicilio:</strong> {site.direccion}</p>
@@ -32,7 +32,7 @@ import { site, paises } from "../data/content";
           </div>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">2. Naturaleza del Servicio</h2>
           <p>TiendaPOS es un sistema de punto de venta (POS) basado en la nube con arquitectura multi-tenant, diseñado para comercios en Latinoamérica. La plataforma ofrece herramientas para:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -46,10 +46,10 @@ import { site, paises } from "../data/content";
           <p class="mt-3">TiendaPOS opera como un software de gestión empresarial y NO como un sistema de facturación certificado por las autoridades tributarias de cada país. El cumplimiento fiscal es responsabilidad del comercio usuario.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">3. Países de Operación</h2>
           <p>TiendaPOS está diseñado para operar en los siguientes países de Latinoamérica, adaptando sus funcionalidades a los requisitos fiscales de cada jurisdicción:</p>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
+          <div class="gsap-fade-up grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
             {paises.map((p) => (
               <div class="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
                 <span class="text-lg">{p.flag}</span>
@@ -60,14 +60,14 @@ import { site, paises } from "../data/content";
           </div>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">4. Propiedad Intelectual e Industrial</h2>
           <p>Todos los derechos de propiedad intelectual e industrial sobre la plataforma TiendaPOS, incluyendo su nombre, logotipo, diseño, código fuente, documentación y materiales asociados, pertenecen a sus legítimos propietarios.</p>
           <p class="mt-3">Queda prohibida la reproducción, distribución, comunicación pública o transformación del contenido de esta plataforma sin la autorización expresa de sus titulares, salvo disposición legal en contrario.</p>
           <p class="mt-3">El logotipo de TiendaPOS, el nombre comercial y cualquier signo distintivo asociado son marcas registradas. Su uso no autorizado constituirá una infracción de los derechos de propiedad industrial.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">5. Exención de Responsabilidad</h2>
           <p>TiendaPOS no se hace responsable de:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -79,16 +79,16 @@ import { site, paises } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">6. Legislación y Jurisdicción</h2>
           <p>El presente aviso legal se rige por la legislación de la República Bolivariana de Venezuela. Para la resolución de cualquier controversia que pudiera derivarse del acceso o uso de la plataforma, las partes se someten a la jurisdicción de los tribunales de Caracas, Venezuela.</p>
           <p class="mt-3">No obstante, en aquellos países donde TiendaPOS preste servicios y exista una normativa local que resulte aplicable, prevalecerán las disposiciones legales de dicha jurisdicción en lo que corresponda.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">7. Monedas y Tasas de Cambio</h2>
           <p>TiendaPOS soporta las siguientes monedas con tasas de cambio actualizadas periódicamente:</p>
-          <div class="overflow-x-auto mt-4">
+          <div class="gsap-fade-up overflow-x-auto mt-4">
             <table class="w-full text-sm">
               <thead>
                 <tr class="border-b border-zinc-800">
@@ -113,7 +113,7 @@ import { site, paises } from "../data/content";
           <p class="text-xs text-zinc-500 mt-3">Las tasas de cambio son referenciales y se actualizan periódicamente. El IGTF del 3% se aplica automáticamente a pagos en USD para comercios en Venezuela conforme a la normativa del BCV.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">8. Seguridad y Confidencialidad</h2>
           <p>TiendaPOS implementa las siguientes medidas de seguridad:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -126,7 +126,7 @@ import { site, paises } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">9. Contacto</h2>
           <p>Para cualquier consulta, reclamación o solicitud relacionada con este aviso legal, puede contactarnos a través de los siguientes medios:</p>
           <div class="mt-4 p-6 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-2">

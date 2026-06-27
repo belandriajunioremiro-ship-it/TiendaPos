@@ -9,23 +9,23 @@ import { site } from "../data/content";
   <Navbar />
   <main class="pt-32 pb-20">
     <div class="container-main max-w-4xl">
-      <a href="/" class="inline-flex items-center gap-2 text-amber hover:text-amber-light transition-colors mb-8 group underline underline-offset-4 decoration-amber/40 hover:decoration-amber">
+      <a href="/" class="gsap-fade-up inline-flex items-center gap-2 text-amber hover:text-amber-light transition-colors mb-8 group underline underline-offset-4 decoration-amber/40 hover:decoration-amber">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="transition-transform group-hover:-translate-x-1">
           <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
         <span class="text-sm font-medium">Volver al inicio</span>
       </a>
-      <h1 class="text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Política de Privacidad</h1>
-      <p class="text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
+      <h1 class="gsap-fade-up text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Política de Privacidad</h1>
+      <p class="gsap-fade-up text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
 
       <div class="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300 leading-relaxed">
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">1. Identificación del Responsable</h2>
           <p>{site.name} (en adelante, "la Plataforma"), con domicilio en {site.direccion} y RIF {site.rif}, es la responsable del tratamiento de los datos personales recabados a través de su plataforma de punto de venta multi-país, multi-moneda y multi-tenant.</p>
           <p class="mt-3">Para cualquier consulta relacionada con esta política, puede contactarnos a través de {site.email} o al {site.whatsapp}.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">2. Datos que Recopilamos</h2>
           <p>Dependiendo del país de operación y del plan contratado, recopilamos las siguientes categorías de datos:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -37,7 +37,7 @@ import { site } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">3. Finalidad del Tratamiento</h2>
           <p>Los datos personales recopilados son tratados con las siguientes finalidades:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -50,7 +50,7 @@ import { site } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">4. Base Legal del Tratamiento</h2>
           <p>El tratamiento de sus datos se fundamenta en:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -61,7 +61,7 @@ import { site } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">5. Aislamiento de Datos (Multi-Tenant)</h2>
           <p>TiendaPOS opera bajo una arquitectura multi-tenant con aislamiento a nivel de base de datos. Esto significa que los datos de cada comercio se almacenan en entornos completamente separados e independientes. Cada tenant:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -72,7 +72,7 @@ import { site } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">6. Conservación de Datos</h2>
           <p>Conservamos sus datos personales durante el tiempo necesario para cumplir con las finalidades descritas en esta política, especialmente:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -83,12 +83,12 @@ import { site } from "../data/content";
           <p class="mt-3">Una vez finalizada la relación contractual, los datos serán bloqueados y posteriormente eliminados de forma segura, excepto aquellos que deban conservarse por imperativo legal.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">7. Transferencia Internacional de Datos</h2>
           <p>Dado que TiendaPOS opera en múltiples países de Latinoamérica, sus datos pueden ser almacenados y procesados en servidores ubicados en diferentes jurisdicciones. Todas las transferencias internacionales de datos se realizan cumpliendo con las garantías adecuadas y conforme a la normativa aplicable en cada país.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">8. Seguridad de los Datos</h2>
           <p>Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos personales, incluyendo:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -101,7 +101,7 @@ import { site } from "../data/content";
           </ul>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">9. Derechos del Usuario</h2>
           <p>Dependiendo de su país de residencia, usted puede ejercer los siguientes derechos:</p>
           <ul class="list-disc pl-6 mt-3 space-y-2">
@@ -115,7 +115,7 @@ import { site } from "../data/content";
           <p class="mt-3">Para ejercer sus derechos, contáctenos en <a href="mailto:{site.email}" class="text-amber hover:text-amber-light underline underline-offset-4 decoration-amber/40 hover:decoration-amber transition-colors">{site.email}</a>. Responderemos a su solicitud en un plazo máximo de 30 días.</p>
         </section>
 
-        <section>
+        <section class="gsap-fade-up">
           <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">10. Cambios a esta Política</h2>
           <p>Nos reservamos el derecho de actualizar esta política de privacidad en cualquier momento. Los cambios significativos serán notificados a través de la plataforma o por correo electrónico. Le recomendamos revisar periódicamente esta página para mantenerse informado.</p>
         </section>
