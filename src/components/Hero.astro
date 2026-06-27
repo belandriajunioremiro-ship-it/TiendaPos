@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, Play, Check, Zap, Shield } from "lucide-astro";
+import { ArrowRight, Play } from "lucide-astro";
 import { waUrl } from "../data/whatsapp";
 ---
 
@@ -49,19 +49,7 @@ import { waUrl } from "../data/whatsapp";
         </a>
       </div>
 
-      <!-- Trust badges -->
-      <div class="gsap-fade-up mt-8 flex flex-wrap justify-center items-center gap-6" style="transition-delay: 0.2s;">
-        {[
-          { icon: Check, text: "14 días gratis" },
-          { icon: Shield, text: "Sin tarjeta de crédito" },
-          { icon: Zap, text: "5 min configuración" },
-        ].map((item) => (
-          <div class="flex items-center gap-2 text-sm text-zinc-500">
-            <item.icon size={16} class="text-amber" />
-            <span>{item.text}</span>
-          </div>
-        ))}
-      </div>
+
     </div>
   </div>
 </section>

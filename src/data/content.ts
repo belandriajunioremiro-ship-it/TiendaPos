@@ -16,6 +16,7 @@ export const site = {
 export const nav = [
   { label: "Por qué elegirnos", href: "#por-que" },
   { label: "Características", href: "#caracteristicas" },
+  { label: "Negocios", href: "#negocios" },
   { label: "Países", href: "#paises" },
   { label: "Planes", href: "#pricing" },
   { label: "FAQ", href: "#faq" },

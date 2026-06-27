@@ -1,0 +1,150 @@
+---
+import {
+  Store, ShoppingBag, Package, Tag, BarChart3, Scan, Bell, Truck, Percent, DollarSign, Layers,
+  Pill, AlertTriangle, ClipboardList, Eye,
+  Wine, Ruler, TrendingUp,
+  Wrench, Grid3x3, Repeat, Barcode, Archive,
+  Search, Users, CreditCard, Smartphone,
+} from "lucide-astro";
+
+const negocios = [
+  {
+    titulo: "Mini Market",
+    desc: "Todo en uno: ventas rápidas, inventario en tiempo real y múltiples proveedores.",
+    icon: Store,
+    items: [
+      { icon: Scan, text: "Escaneo rápido con código de barras" },
+      { icon: Bell, text: "Alertas de stock bajo automáticas" },
+      { icon: Truck, text: "Gestión de múltiples proveedores" },
+      { icon: Percent, text: "Promociones y descuentos por día" },
+      { icon: DollarSign, text: "Arqueo de caja automático" },
+      { icon: Layers, text: "Categorías y campos pre-configurados" },
+    ],
+  },
+  {
+    titulo: "Farmacia",
+    desc: "Control de medicamentos por lote, vencimientos FEFO y tracking de ventas restringidas.",
+    icon: Pill,
+    items: [
+      { icon: Package, text: "Control de lotes con fecha de vencimiento" },
+      { icon: AlertTriangle, text: "Alertas FEFO para evitar pérdidas" },
+      { icon: ClipboardList, text: "Campos: principio activo, dosis, presentación" },
+      { icon: BarChart3, text: "Reportes de movimientos por medicamento" },
+      { icon: Eye, text: "Seguimiento de productos controlados" },
+      { icon: Layers, text: "Categorías y campos pre-configurados" },
+    ],
+  },
+  {
+    titulo: "Licorería",
+    desc: "Gestión de inventario por presentaciones, lotes de importación y precios por volumen.",
+    icon: Wine,
+    items: [
+      { icon: Ruler, text: "Variantes por tamaño: 750ml, 1L, 2L" },
+      { icon: Package, text: "Control de stock por lote de importación" },
+      { icon: Tag, text: "Precios diferenciados por cantidad" },
+      { icon: TrendingUp, text: "Reportes de rotación por producto" },
+      { icon: Percent, text: "Descuentos automáticos por volumen" },
+      { icon: Layers, text: "Categorías y campos pre-configurados" },
+    ],
+  },
+  {
+    titulo: "Ferretería",
+    desc: "Miles de SKUs organizados por categorías, medidas y equivalencias.",
+    icon: Wrench,
+    items: [
+      { icon: Grid3x3, text: "Categorías jerárquicas: electricidad, plomería, construcción" },
+      { icon: Ruler, text: "Unidades de medida con conversión automática" },
+      { icon: Repeat, text: "Productos equivalentes y sustitutos" },
+      { icon: Barcode, text: "Códigos de barras múltiples por producto" },
+      { icon: Archive, text: "Stock mínimo por categoría" },
+      { icon: Layers, text: "Categorías y campos pre-configurados" },
+    ],
+  },
+  {
+    titulo: "Abasto / Bodega",
+    desc: "Rápido en el mostrador, ventas al crédito gestionadas, multimoneda e IGTF.",
+    icon: ShoppingBag,
+    items: [
+      { icon: Search, text: "Búsqueda instantánea por nombre o código" },
+      { icon: Users, text: "Ventas fiado con límite por cliente" },
+      { icon: DollarSign, text: "Abonos parciales con actualización de saldo" },
+      { icon: CreditCard, text: "Pagos mixtos: efectivo + tarjeta + móvil" },
+      { icon: Smartphone, text: "IGTF 3% automático para Venezuela" },
+      { icon: Layers, text: "Categorías y campos pre-configurados" },
+    ],
+  },
+];
+---
+
+<section id="negocios" class="relative overflow-hidden py-20 lg:py-28 bg-dark-primary">
+  <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+  <div class="absolute top-1/3 -right-32 w-96 h-96 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
+
+  <div class="container-main relative">
+    <div class="max-w-3xl mb-16">
+      <h2 class="gsap-fade-up text-zinc-100">
+        Hecho para tu tipo de negocio.<br />
+        <span class="text-zinc-500">No para todo el mundo.</span>
+      </h2>
+      <p class="gsap-fade-up mt-5 text-lg text-zinc-400 max-w-2xl" style="transition-delay: 0.1s;">
+        Cada nicho tiene sus reglas. Farmacias con vencimientos FEFO, ferreterías con miles de SKUs, abastos con ventas al crédito. TiendaPOS se adapta, no te obliga a adaptarte.
+      </p>
+    </div>
+
+    <div class="space-y-14 lg:space-y-20">
+      {negocios.map((n, i) => {
+        const Icon = n.icon;
+        const isLeft = i % 2 === 0;
+        return (
+          <div class={`gsap-fade-up grid lg:grid-cols-2 gap-8 lg:gap-14 items-center`} style={`transition-delay: ${i * 0.1}s`}>
+            <!-- Text -->
+            <div class={`${isLeft ? "lg:order-1" : "lg:order-2"}`}>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-amber/15 border border-amber/30 flex items-center justify-center">
+                  <Icon size={20} class="text-amber" />
+                </div>
+                <h3 class="text-2xl lg:text-3xl font-display font-bold text-zinc-100">{n.titulo}</h3>
+              </div>
+              <p class="text-zinc-400 leading-relaxed mb-6">{n.desc}</p>
+              <ul class="space-y-2.5">
+                {n.items.map((item) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <li class="flex items-start gap-2.5">
+                      <span class="w-5 h-5 rounded-full bg-amber/10 flex items-center justify-center shrink-0 mt-0.5">
+                        <ItemIcon size={12} class="text-amber" />
+                      </span>
+                      <span class="text-zinc-300 text-sm">{item.text}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+
+            <!-- Visual -->
+            <div class={`${isLeft ? "lg:order-2" : "lg:order-1"}`}>
+              <div class="relative rounded-xl bg-zinc-900/60 border border-zinc-800/60 p-6 lg:p-8 min-h-[260px] flex items-center justify-center overflow-hidden group hover:border-amber/20 transition-colors">
+                <div class="absolute -top-12 -right-12 w-40 h-40 bg-amber/5 rounded-full blur-2xl group-hover:bg-amber/10 transition-all" />
+                <div class="grid grid-cols-3 gap-3 w-full">
+                  {n.items.map((item) => {
+                    const ItemIcon = item.icon;
+                    return (
+                      <div class="flex flex-col items-center gap-2 text-center">
+                        <div class="w-12 h-12 rounded-xl bg-zinc-800/80 border border-zinc-700/50 flex items-center justify-center group-hover:border-amber/20 group-hover:bg-amber/[0.03] transition-all">
+                          <ItemIcon size={22} class="text-zinc-500 group-hover:text-amber/70 transition-colors" />
+                        </div>
+                        <span class="text-[10px] text-zinc-600 leading-tight line-clamp-2">
+                          {item.text.length > 28 ? item.text.substring(0, 28) + "…" : item.text}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

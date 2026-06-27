@@ -1,6 +1,6 @@
 ---
 import { pasosOnboarding } from "../data/content";
-import { ArrowRight, Check } from "lucide-astro";
+import { ArrowRight } from "lucide-astro";
 ---
 
 <section class="relative overflow-hidden py-20 lg:py-28 bg-dark-tertiary">
@@ -45,13 +45,6 @@ import { ArrowRight, Check } from "lucide-astro";
       ))}
     </div>
 
-    <div class="gsap-fade-up mt-10 flex items-center gap-6 text-sm text-zinc-600 font-mono">
-      {["Trial automático", "14 días gratis", "Sin tarjeta de crédito"].map((text) => (
-        <div class="flex items-center gap-2">
-          <Check size={14} class="text-emerald-500" />
-          <span>{text}</span>
-        </div>
-      ))}
-    </div>
+
   </div>
 </section>
