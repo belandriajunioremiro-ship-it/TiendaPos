@@ -139,6 +139,32 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
 
     <slot />
 
+    <!-- Back to top -->
+    <button
+      id="back-to-top"
+      aria-label="Volver al inicio"
+      class="fixed bottom-20 right-6 z-30 w-11 h-11 rounded-full bg-zinc-800/80 backdrop-blur-sm border border-zinc-700/50 flex items-center justify-center text-zinc-400 hover:text-amber hover:border-amber/40 hover:bg-zinc-800 transition-all duration-300 opacity-0 invisible translate-y-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+    <script>
+      const backBtn = document.getElementById("back-to-top");
+      if (backBtn) {
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 400) {
+            backBtn.classList.remove("opacity-0", "invisible", "translate-y-2");
+            backBtn.classList.add("opacity-100", "visible", "translate-y-0");
+          } else {
+            backBtn.classList.add("opacity-0", "invisible", "translate-y-2");
+            backBtn.classList.remove("opacity-100", "visible", "translate-y-0");
+          }
+        }, { passive: true });
+        backBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
+    </script>
+
     <WhatsAppChat client:idle />
 
     <script>
