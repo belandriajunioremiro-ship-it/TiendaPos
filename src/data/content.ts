@@ -9,7 +9,7 @@ export const site = {
   whatsapp: "+58 424-725-3544",
   email: "hola@tiendapos.com",
   rif: "J-12345678-9",
-  direccion: "Av. Francisco de Miranda, Caracas, Venezuela",
+  direccion: "San Cristóbal, Táchira, Venezuela",
   trial: "14 días gratis · Sin tarjeta de crédito · Cancela cuando quieras",
 };
 
