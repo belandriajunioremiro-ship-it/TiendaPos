@@ -76,6 +76,7 @@ export default function WhatsAppChat() {
             </div>
             <button
               onClick={() => setOpen(false)}
+              aria-label="Cerrar panel"
               class="w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-zinc-900/60 hover:bg-zinc-900/15 hover:text-zinc-900 transition-all shrink-0"
             >
               <svg width="12" height="12" viewBox="0 0 14 14" fill="none" class="sm:w-[14px] sm:h-[14px]">
@@ -129,6 +130,7 @@ export default function WhatsAppChat() {
             <button
               onClick={send}
               disabled={!msg.trim()}
+              aria-label="Enviar mensaje"
               class={`w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center transition-all shrink-0 ${
                 msg.trim()
                   ? "bg-amber text-zinc-900 hover:bg-amber/90 shadow-sm shadow-amber/20"
@@ -148,6 +150,7 @@ export default function WhatsAppChat() {
       <button
         data-chat-toggle
         onClick={() => setOpen(!open)}
+        aria-label={open ? "Cerrar chat" : "Abrir chat WhatsApp"}
         class={`relative pointer-events-auto w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl active:scale-95 shrink-0 ${
           open
             ? "bg-zinc-800 border border-zinc-600 shadow-zinc-900/50 rotate-90"
