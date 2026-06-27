@@ -1,0 +1,22 @@
+---
+import { Zap, Shield, Check } from "lucide-astro";
+---
+
+<section class="relative py-8 bg-dark-secondary border-y border-zinc-800/50">
+  <div class="container-main">
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+      <div class="flex items-center gap-2.5">
+        <Zap size={18} class="text-amber shrink-0" />
+        <span class="text-zinc-100 text-sm font-medium">Trial automático</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <Check size={18} class="text-amber shrink-0" />
+        <span class="text-zinc-100 text-sm font-medium">14 días gratis</span>
+      </div>
+      <div class="flex items-center gap-2.5">
+        <Shield size={18} class="text-amber shrink-0" />
+        <span class="text-zinc-100 text-sm font-medium">Sin tarjeta de crédito</span>
+      </div>
+    </div>
+  </div>
+</section>
