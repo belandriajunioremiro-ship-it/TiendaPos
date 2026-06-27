@@ -239,6 +239,22 @@ export const faq = [
     a: "TiendaPOS gestiona datos formales de facturación con campos fiscales por jurisdicción, numeración correlativa y notas de crédito con trazabilidad. Es importante aclarar que no es un sistema fiscal certificado, pero cumple con los requisitos formales de cada país.",
   },
   {
+    q: "¿TiendaPOS sirve para mi farmacia?",
+    a: "Sí. TiendaPOS tiene control de lotes con fechas de vencimiento, alertas FEFO, campos por principio activo y dosis, y seguimiento de productos controlados. Todo pre-configurado para farmacias.",
+  },
+  {
+    q: "¿TiendaPOS funciona para abastos y bodegas?",
+    a: "Sí. El sistema soporta ventas al crédito con límite por cliente, pagos mixtos (efectivo + tarjeta + móvil), IGTF automático para Venezuela y búsqueda instantánea por nombre o código de barras.",
+  },
+  {
+    q: "¿Puedo usar TiendaPOS en una ferretería?",
+    a: "Sí. Soporta miles de SKUs con categorías jerárquicas (electricidad, plomería, construcción), unidades de medida con conversión, productos equivalentes y códigos de barras múltiples.",
+  },
+  {
+    q: "¿TiendaPOS es bueno para licorerías?",
+    a: "Sí. Control de inventario por presentaciones (750ml, 1L), lotes de importación, precios por volumen y reportes de rotación. Ideal para licorerías con múltiples variantes por producto.",
+  },
+  {
     q: "¿Qué tipo de soporte ofrecen?",
     a: "El plan Gratis incluye soporte por email. Los planes Básico y Pro incluyen soporte prioritario. El plan Premium incluye soporte 24/7 y soporte dedicado.",
   },
