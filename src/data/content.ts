@@ -1,11 +1,11 @@
 // TiendaPOS — Sistema de punto de venta multi-país, multi-moneda, multi-tenant
-// Facturación fiscal de Latinoamérica
+// Multi-país, multi-moneda, multi-tenant
 
 export const site = {
   name: "TiendaPOS",
-  tagline: "POS que entiende la facturación fiscal LATAM",
+  tagline: "El POS Multi-País para Latinoamérica",
   description:
-    "Sistema POS multi-país y multi-moneda. Vende, factura y controla inventario desde un solo sistema. 9 países, IGTF incluido.",
+    "Sistema POS multi-país y multi-moneda. Vende, controla inventario y administra tu negocio desde un solo sistema. Adaptado a 9 países LATAM.",
   whatsapp: "+58 424-725-3544",
   email: "hola@tiendapos.com",
   rif: "J-12345678-9",
