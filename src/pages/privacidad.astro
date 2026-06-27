@@ -1,0 +1,120 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/content";
+---
+
+<Base title="Política de Privacidad — {site.name}">
+  <Navbar />
+  <main class="pt-32 pb-20">
+    <div class="container-main max-w-4xl">
+      <h1 class="text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Política de Privacidad</h1>
+      <p class="text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
+
+      <div class="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300 leading-relaxed">
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">1. Identificación del Responsable</h2>
+          <p>{site.name} (en adelante, "la Plataforma"), con domicilio en {site.direccion} y RIF {site.rif}, es la responsable del tratamiento de los datos personales recabados a través de su plataforma de punto de venta multi-país, multi-moneda y multi-tenant.</p>
+          <p class="mt-3">Para cualquier consulta relacionada con esta política, puede contactarnos a través de {site.email} o al {site.whatsapp}.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">2. Datos que Recopilamos</h2>
+          <p>Dependiendo del país de operación y del plan contratado, recopilamos las siguientes categorías de datos:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li><strong class="text-zinc-100">Datos de identificación:</strong> nombre completo, documento de identidad (RIF, NIT, RFC, RUC, CUIT según el país), correo electrónico y número de teléfono.</li>
+            <li><strong class="text-zinc-100">Datos fiscales:</strong> información necesaria para la emisión de facturas y documentos fiscales conforme a la legislación de cada país donde opere el comercio.</li>
+            <li><strong class="text-zinc-100">Datos de facturación:</strong> historial de transacciones, montos, impuestos aplicados (IVA, IGV, IGTF), tasas de cambio y medios de pago utilizados.</li>
+            <li><strong class="text-zinc-100">Datos de operación:</strong> productos, inventarios, precios, clientes, proveedores y reportes de ventas generados dentro de la plataforma.</li>
+            <li><strong class="text-zinc-100">Datos técnicos:</strong> dirección IP, tipo de navegador, sistema operativo, páginas visitadas y tiempo de sesión.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">3. Finalidad del Tratamiento</h2>
+          <p>Los datos personales recopilados son tratados con las siguientes finalidades:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Prestar el servicio de punto de venta, incluyendo la facturación fiscal, control de inventario y gestión de créditos.</li>
+            <li>Cumplir con las obligaciones fiscales y regulatorias de cada país donde opere el comercio (Venezuela, Colombia, México, Ecuador, Argentina, Perú, Chile, Bolivia y Uruguay).</li>
+            <li>Gestionar la relación contractual, incluyendo facturación, cobros y soporte técnico.</li>
+            <li>Mejorar la plataforma mediante análisis de uso y rendimiento.</li>
+            <li>Enviar comunicaciones operativas y actualizaciones del servicio.</li>
+            <li>Cumplir con requerimientos legales y regulatorios aplicables.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">4. Base Legal del Tratamiento</h2>
+          <p>El tratamiento de sus datos se fundamenta en:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>La ejecución del contrato de servicios entre el comercio y la Plataforma.</li>
+            <li>El cumplimiento de obligaciones legales aplicables en materia fiscal y contable de cada país.</li>
+            <li>El interés legítimo de mejorar y asegurar el correcto funcionamiento de la plataforma.</li>
+            <li>Su consentimiento, cuando corresponda, para finalidades específicas como comunicaciones promocionales.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">5. Aislamiento de Datos (Multi-Tenant)</h2>
+          <p>TiendaPOS opera bajo una arquitectura multi-tenant con aislamiento a nivel de base de datos. Esto significa que los datos de cada comercio se almacenan en entornos completamente separados e independientes. Cada tenant:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Posee su propio esquema de base de datos con tablas y datos aislados.</li>
+            <li>No tiene acceso a los datos de otros comercios bajo ninguna circunstancia.</li>
+            <li>Puede exportar la totalidad de sus datos en cualquier momento.</li>
+            <li>Cuenta con mecanismos de autenticación y autorización independientes.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">6. Conservación de Datos</h2>
+          <p>Conservamos sus datos personales durante el tiempo necesario para cumplir con las finalidades descritas en esta política, especialmente:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Mientras la cuenta del comercio esté activa.</li>
+            <li>Durante los plazos de prescripción legal establecidos por las autoridades fiscales de cada país (generalmente entre 5 y 10 años).</li>
+            <li>Hasta que se solicite su cancelación, salvo que exista una obligación legal de conservación.</li>
+          </ul>
+          <p class="mt-3">Una vez finalizada la relación contractual, los datos serán bloqueados y posteriormente eliminados de forma segura, excepto aquellos que deban conservarse por imperativo legal.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">7. Transferencia Internacional de Datos</h2>
+          <p>Dado que TiendaPOS opera en múltiples países de Latinoamérica, sus datos pueden ser almacenados y procesados en servidores ubicados en diferentes jurisdicciones. Todas las transferencias internacionales de datos se realizan cumpliendo con las garantías adecuadas y conforme a la normativa aplicable en cada país.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">8. Seguridad de los Datos</h2>
+          <p>Implementamos medidas de seguridad técnicas y organizativas para proteger sus datos personales, incluyendo:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Cifrado SSL/TLS en todas las comunicaciones.</li>
+            <li>Aislamiento de datos a nivel de base de datos por tenant.</li>
+            <li>Autenticación segura con tokens Sanctum.</li>
+            <li>Monitoreo continuo de accesos y actividades sospechosas.</li>
+            <li>Copias de seguridad automatizadas con cifrado.</li>
+            <li>Control de acceso basado en roles (RBAC) dentro de cada tenant.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">9. Derechos del Usuario</h2>
+          <p>Dependiendo de su país de residencia, usted puede ejercer los siguientes derechos:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li><strong class="text-zinc-100">Acceso:</strong> conocer qué datos personales tratamos y con qué finalidad.</li>
+            <li><strong class="text-zinc-100">Rectificación:</strong> solicitar la corrección de datos inexactos o incompletos.</li>
+            <li><strong class="text-zinc-100">Cancelación:</strong> solicitar la eliminación de sus datos cuando ya no sean necesarios.</li>
+            <li><strong class="text-zinc-100">Oposición:</strong> oponerse al tratamiento de sus datos para fines específicos.</li>
+            <li><strong class="text-zinc-100">Portabilidad:</strong> recibir sus datos en un formato estructurado y de uso común.</li>
+            <li><strong class="text-zinc-100">Limitación:</strong> solicitar la suspensión del tratamiento en determinados supuestos.</li>
+          </ul>
+          <p class="mt-3">Para ejercer sus derechos, contáctenos en <a href="mailto:{site.email}" class="text-amber hover:underline">{site.email}</a>. Responderemos a su solicitud en un plazo máximo de 30 días.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">10. Cambios a esta Política</h2>
+          <p>Nos reservamos el derecho de actualizar esta política de privacidad en cualquier momento. Los cambios significativos serán notificados a través de la plataforma o por correo electrónico. Le recomendamos revisar periódicamente esta página para mantenerse informado.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

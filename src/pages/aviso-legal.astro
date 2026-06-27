@@ -1,0 +1,137 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { site, paises } from "../data/content";
+---
+
+<Base title="Aviso Legal — {site.name}">
+  <Navbar />
+  <main class="pt-32 pb-20">
+    <div class="container-main max-w-4xl">
+      <h1 class="text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Aviso Legal</h1>
+      <p class="text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
+
+      <div class="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300 leading-relaxed">
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">1. Datos Identificativos</h2>
+          <p>En cumplimiento con la legislación vigente en la República Bolivariana de Venezuela y las normativas aplicables en los países donde operamos, se informa:</p>
+          <div class="mt-4 p-6 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-2">
+            <p><strong class="text-zinc-100">Razón Social:</strong> {site.name}</p>
+            <p><strong class="text-zinc-100">RIF:</strong> {site.rif}</p>
+            <p><strong class="text-zinc-100">Domicilio:</strong> {site.direccion}</p>
+            <p><strong class="text-zinc-100">Correo Electrónico:</strong> <a href="mailto:{site.email}" class="text-amber hover:underline">{site.email}</a></p>
+            <p><strong class="text-zinc-100">WhatsApp:</strong> {site.whatsapp}</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">2. Naturaleza del Servicio</h2>
+          <p>TiendaPOS es un sistema de punto de venta (POS) basado en la nube con arquitectura multi-tenant, diseñado para comercios en Latinoamérica. La plataforma ofrece herramientas para:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Gestión de ventas y facturación fiscal adaptada a cada país.</li>
+            <li>Control de inventario con múltiples almacenes y seguimiento de lotes FEFO.</li>
+            <li>Administración de créditos y cobranzas.</li>
+            <li>Gestión multi-moneda con tasas de cambio actualizadas.</li>
+            <li>Cálculo automático del IGTF (3%) para pagos en USD en Venezuela.</li>
+            <li>API REST para integración con sistemas externos.</li>
+          </ul>
+          <p class="mt-3">TiendaPOS opera como un software de gestión empresarial y NO como un sistema de facturación certificado por las autoridades tributarias de cada país. El cumplimiento fiscal es responsabilidad del comercio usuario.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">3. Países de Operación</h2>
+          <p>TiendaPOS está diseñado para operar en los siguientes países de Latinoamérica, adaptando sus funcionalidades a los requisitos fiscales de cada jurisdicción:</p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-4">
+            {paises.map((p) => (
+              <div class="p-3 rounded-lg bg-zinc-900/60 border border-zinc-800">
+                <span class="text-lg">{p.flag}</span>
+                <p class="font-medium text-zinc-100 text-sm mt-1">{p.nombre}</p>
+                <p class="text-[11px] text-zinc-500">{p.id} · {p.impuesto}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">4. Propiedad Intelectual e Industrial</h2>
+          <p>Todos los derechos de propiedad intelectual e industrial sobre la plataforma TiendaPOS, incluyendo su nombre, logotipo, diseño, código fuente, documentación y materiales asociados, pertenecen a sus legítimos propietarios.</p>
+          <p class="mt-3">Queda prohibida la reproducción, distribución, comunicación pública o transformación del contenido de esta plataforma sin la autorización expresa de sus titulares, salvo disposición legal en contrario.</p>
+          <p class="mt-3">El logotipo de TiendaPOS, el nombre comercial y cualquier signo distintivo asociado son marcas registradas. Su uso no autorizado constituirá una infracción de los derechos de propiedad industrial.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">5. Exención de Responsabilidad</h2>
+          <p>TiendaPOS no se hace responsable de:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>El uso indebido que los comercios o usuarios hagan de la plataforma.</li>
+            <li>La veracidad, exactitud y actualización de los datos ingresados por los comercios en sus tenants.</li>
+            <li>Los daños o perjuicios derivados de fallos técnicos, virus informáticos o ataques cibernéticos, adoptando todas las medidas de seguridad razonables para mitigar estos riesgos.</li>
+            <li>El incumplimiento de obligaciones fiscales, laborales o regulatorias por parte de los comercios usuarios.</li>
+            <li>Los contenidos y servicios de sitios web de terceros a los que se pueda acceder mediante enlaces desde nuestra plataforma.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">6. Legislación y Jurisdicción</h2>
+          <p>El presente aviso legal se rige por la legislación de la República Bolivariana de Venezuela. Para la resolución de cualquier controversia que pudiera derivarse del acceso o uso de la plataforma, las partes se someten a la jurisdicción de los tribunales de Caracas, Venezuela.</p>
+          <p class="mt-3">No obstante, en aquellos países donde TiendaPOS preste servicios y exista una normativa local que resulte aplicable, prevalecerán las disposiciones legales de dicha jurisdicción en lo que corresponda.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">7. Monedas y Tasas de Cambio</h2>
+          <p>TiendaPOS soporta las siguientes monedas con tasas de cambio actualizadas periódicamente:</p>
+          <div class="overflow-x-auto mt-4">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="border-b border-zinc-800">
+                  <th class="text-left py-2 px-3 text-zinc-100 font-semibold">Moneda</th>
+                  <th class="text-left py-2 px-3 text-zinc-100 font-semibold">País</th>
+                  <th class="text-left py-2 px-3 text-zinc-100 font-semibold">Tasa Referencial</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-zinc-800/60">
+                <tr><td class="py-2 px-3">USD</td><td class="py-2 px-3">Base</td><td class="py-2 px-3">1.00</td></tr>
+                <tr><td class="py-2 px-3">VES</td><td class="py-2 px-3">Venezuela</td><td class="py-2 px-3">36.50</td></tr>
+                <tr><td class="py-2 px-3">COP</td><td class="py-2 px-3">Colombia</td><td class="py-2 px-3">4,180</td></tr>
+                <tr><td class="py-2 px-3">MXN</td><td class="py-2 px-3">México</td><td class="py-2 px-3">17.15</td></tr>
+                <tr><td class="py-2 px-3">ARS</td><td class="py-2 px-3">Argentina</td><td class="py-2 px-3">870.00</td></tr>
+                <tr><td class="py-2 px-3">PEN</td><td class="py-2 px-3">Perú</td><td class="py-2 px-3">3.72</td></tr>
+                <tr><td class="py-2 px-3">CLP</td><td class="py-2 px-3">Chile</td><td class="py-2 px-3">940</td></tr>
+                <tr><td class="py-2 px-3">BOB</td><td class="py-2 px-3">Bolivia</td><td class="py-2 px-3">6.90</td></tr>
+                <tr><td class="py-2 px-3">UYU</td><td class="py-2 px-3">Uruguay</td><td class="py-2 px-3">39.50</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-xs text-zinc-500 mt-3">Las tasas de cambio son referenciales y se actualizan periódicamente. El IGTF del 3% se aplica automáticamente a pagos en USD para comercios en Venezuela conforme a la normativa del BCV.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">8. Seguridad y Confidencialidad</h2>
+          <p>TiendaPOS implementa las siguientes medidas de seguridad:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Cifrado SSL/TLS en todas las comunicaciones.</li>
+            <li>Aislamiento completo de datos entre tenants a nivel de base de datos.</li>
+            <li>Autenticación mediante tokens Sanctum.</li>
+            <li>Monitoreo continuo de seguridad y detección de intrusiones.</li>
+            <li>Copias de seguridad cifradas con retención configurable.</li>
+            <li>Control de acceso basado en roles (RBAC).</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">9. Contacto</h2>
+          <p>Para cualquier consulta, reclamación o solicitud relacionada con este aviso legal, puede contactarnos a través de los siguientes medios:</p>
+          <div class="mt-4 p-6 rounded-xl bg-zinc-900/60 border border-zinc-800 space-y-2">
+            <p><strong class="text-zinc-100">Email:</strong> <a href="mailto:{site.email}" class="text-amber hover:underline">{site.email}</a></p>
+            <p><strong class="text-zinc-100">WhatsApp:</strong> <a href="https://wa.me/584247253544" target="_blank" class="text-amber hover:underline">{site.whatsapp}</a></p>
+            <p><strong class="text-zinc-100">Dirección:</strong> {site.direccion}</p>
+            <p><strong class="text-zinc-100">Horario de atención:</strong> Lunes a viernes de 8:00 a.m. a 6:00 p.m. (GMT-4)</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

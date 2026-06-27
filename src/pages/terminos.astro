@@ -1,0 +1,142 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/content";
+---
+
+<Base title="Términos de Servicio — {site.name}">
+  <Navbar />
+  <main class="pt-32 pb-20">
+    <div class="container-main max-w-4xl">
+      <h1 class="text-4xl lg:text-5xl font-display font-bold text-zinc-100 mb-4">Términos de Servicio</h1>
+      <p class="text-zinc-500 text-sm mb-12">Última actualización: 27 de junio de 2026</p>
+
+      <div class="prose prose-invert prose-zinc max-w-none space-y-8 text-zinc-300 leading-relaxed">
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">1. Aceptación de los Términos</h2>
+          <p>Al acceder y utilizar la plataforma TiendaPOS (en adelante, "la Plataforma"), usted acepta los presentes Términos de Servicio. Si no está de acuerdo con alguna de estas condiciones, no podrá utilizar la Plataforma.</p>
+          <p class="mt-3">TiendaPOS es un sistema de punto de venta multi-tenant, multi-país y multi-moneda diseñado para facilitar la gestión comercial y la facturación fiscal de negocios en Latinoamérica.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">2. Definiciones</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><strong class="text-zinc-100">Plataforma:</strong> sistema de punto de venta TiendaPOS, incluyendo su interfaz web, API y servicios asociados.</li>
+            <li><strong class="text-zinc-100">Tenant:</strong> entorno aislado e independiente asignado a cada comercio dentro de la plataforma.</li>
+            <li><strong class="text-zinc-100">Usuario:</strong> persona natural autorizada por un comercio para operar dentro de su tenant.</li>
+            <li><strong class="text-zinc-100">Comercio:</strong> persona jurídica o natural que contrata los servicios de la Plataforma para gestionar su punto de venta.</li>
+            <li><strong class="text-zinc-100">Datos Fiscales:</strong> información requerida por las autoridades tributarias de cada país para la emisión de facturas y documentos fiscales.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">3. Registro y Cuenta</h2>
+          <p>Para utilizar la Plataforma, el comercio debe registrarse proporcionando información veraz y completa. Cada registro crea un tenant independiente con su propia base de datos aislada. El comercio es responsable de:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Mantener la confidencialidad de sus credenciales de acceso.</li>
+            <li>Designar usuarios autorizados y gestionar sus permisos dentro del tenant.</li>
+            <li>Garantizar que la información fiscal proporcionada sea correcta y esté actualizada según la legislación de su país.</li>
+            <li>Notificar inmediatamente cualquier uso no autorizado de su cuenta.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">4. Planes y Facturación</h2>
+          <p>La Plataforma ofrece los siguientes planes: Gratis, Básico, Pro y Premium. Cada plan tiene características y límites específicos detallados en la sección de precios de nuestro sitio web.</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>El plan Gratis incluye un período de prueba de 14 días con todas las funciones del plan Pro.</li>
+            <li>No se requiere tarjeta de crédito para iniciar la prueba gratuita.</li>
+            <li>Los planes de pago se facturan mensualmente y pueden cancelarse en cualquier momento.</li>
+            <li>Los cambios de plan se aplican de forma inmediata con prorrateo automático.</li>
+            <li>El incumplimiento de pago puede resultar en la suspensión temporal del servicio.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">5. Uso de la Plataforma</h2>
+          <p>El comercio y sus usuarios se comprometen a utilizar la Plataforma de acuerdo con la ley y estos términos. Queda prohibido:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Utilizar la Plataforma para actividades ilegales o contrarias a la moral y las buenas costumbres.</li>
+            <li>Intentar acceder a datos de otros tenants o vulnerar los mecanismos de aislamiento de datos.</li>
+            <li>Realizar ingeniería inversa, descompilar o modificar el código fuente de la Plataforma.</li>
+            <li>Superar los límites de uso establecidos en el plan contratado.</li>
+            <li>Utilizar la Plataforma para facturar operaciones que no correspondan a la actividad real del comercio.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">6. Responsabilidad Fiscal</h2>
+          <p>TiendaPOS proporciona herramientas para facilitar la gestión fiscal de los comercios, incluyendo campos fiscales por jurisdicción, numeración correlativa, cálculo de impuestos (IVA, IGV, IGTF) y generación de documentos fiscales. Sin embargo:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>La Plataforma no es un sistema fiscal certificado por ninguna autoridad tributaria.</li>
+            <li>El comercio es el único responsable de cumplir con sus obligaciones fiscales ante las autoridades de su país.</li>
+            <li>La información fiscal ingresada en la Plataforma es responsabilidad exclusiva del comercio.</li>
+            <li>TiendaPOS no se hace responsable por errores en la declaración de impuestos ni por el incumplimiento de normativas fiscales locales.</li>
+            <li>El comercio debe verificar que los parámetros fiscales configurados en su tenant correspondan a su régimen tributario aplicable.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">7. Propiedad Intelectual</h2>
+          <p>Todo el contenido, diseño, código fuente, logotipos y materiales de la Plataforma son propiedad exclusiva de TiendaPOS o de sus licenciantes. El comercio recibe una licencia limitada, no exclusiva e intransferible para utilizar la Plataforma durante la vigencia del plan contratado.</p>
+          <p class="mt-3">Los datos generados por el comercio dentro de su tenant (productos, clientes, ventas, etc.) son propiedad exclusiva del comercio, quien puede exportarlos en cualquier momento.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">8. Disponibilidad del Servicio</h2>
+          <p>Nos esforzamos por mantener la Plataforma disponible 24/7, sin embargo, no garantizamos disponibilidad ininterrumpida. Pueden ocurrir interrupciones por:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Mantenimiento programado, que será notificado con antelación.</li>
+            <li>Fallas técnicas fuera de nuestro control.</li>
+            <li>Casos de fuerza mayor.</li>
+          </ul>
+          <p class="mt-3">El plan Premium incluye un acuerdo de nivel de servicio (SLA) con garantías específicas de disponibilidad.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">9. Limitación de Responsabilidad</h2>
+          <p>En la máxima medida permitida por la ley, TiendaPOS no será responsable por:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>Daños indirectos, incidentales o consecuentes derivados del uso de la Plataforma.</li>
+            <li>Pérdida de datos, ingresos o beneficios.</li>
+            <li>Interrupciones del servicio no atribuibles a nuestra negligencia.</li>
+            <li>Actos de terceros, incluyendo ataques cibernéticos.</li>
+            <li>El incumplimiento de obligaciones fiscales por parte del comercio.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">10. Cancelación</h2>
+          <p>El comercio puede cancelar su suscripción en cualquier momento desde el panel de administración. Al cancelar:</p>
+          <ul class="list-disc pl-6 mt-3 space-y-2">
+            <li>El servicio permanecerá activo hasta el final del período facturado.</li>
+            <li>Los datos del comercio estarán disponibles para exportación durante 30 días.</li>
+            <li>Transcurrido ese plazo, los datos serán eliminados de forma segura.</li>
+            <li>No se realizarán reembolsos por períodos parciales no utilizados, salvo disposición legal en contrario.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">11. Legislación Aplicable</h2>
+          <p>Estos términos se rigen por las leyes de la República Bolivariana de Venezuela. Para cualquier controversia derivada del uso de la Plataforma, las partes se someten a la jurisdicción de los tribunales de Caracas, Venezuela.</p>
+          <p class="mt-3">Sin perjuicio de lo anterior, cuando el comercio opere en otros países, se aplicarán las normativas fiscales y regulatorias locales que correspondan a su jurisdicción.</p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-display font-bold text-zinc-100 mb-3">12. Contacto</h2>
+          <p>Para cualquier consulta sobre estos términos, puede contactarnos en:</p>
+          <p class="mt-2">
+            <strong>{site.name}</strong><br />
+            {site.direccion}<br />
+            RIF: {site.rif}<br />
+            Email: <a href="mailto:{site.email}" class="text-amber hover:underline">{site.email}</a><br />
+            WhatsApp: {site.whatsapp}
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
