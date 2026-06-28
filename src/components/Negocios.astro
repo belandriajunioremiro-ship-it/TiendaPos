@@ -120,11 +120,10 @@ const negocios = [
     <div class="space-y-14 lg:space-y-20">
       {negocios.map((n, i) => {
         const Icon = n.icon;
-        const isLeft = i % 2 === 0;
         return (
-          <div class={`gsap-fade-up grid lg:grid-cols-2 gap-8 lg:gap-14 items-center`} style={`transition-delay: ${i * 0.1}s`}>
+          <div class="gsap-fade-up space-y-6" style={`transition-delay: ${i * 0.1}s`}>
             <!-- Text -->
-            <div class={`${isLeft ? "lg:order-1" : "lg:order-2"}`}>
+            <div>
               <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-xl bg-amber/15 border border-amber/30 flex items-center justify-center">
                   <Icon size={20} class="text-amber" />
@@ -152,8 +151,8 @@ const negocios = [
             </div>
 
             <!-- Visual: imagen del rubro -->
-            <div class={`gsap-scale-in ${isLeft ? "lg:order-2" : "lg:order-1"}`} style={`transition-delay: ${i * 0.1}s`}>
-              <div class="relative w-full h-full min-h-[300px] lg:min-h-[320px] rounded-xl overflow-hidden group">
+            <div class="gsap-scale-in" style={`transition-delay: ${i * 0.1}s`}>
+              <div class="relative w-full h-full min-h-[260px] lg:min-h-[300px] rounded-xl overflow-hidden group">
                 <img
                   src={n.img}
                   alt={`Fachada de ${n.titulo} - TiendaPOS`}
