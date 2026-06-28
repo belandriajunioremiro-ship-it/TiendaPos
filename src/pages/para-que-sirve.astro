@@ -1,0 +1,382 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/content";
+import { waUrl } from "../data/whatsapp";
+import { servicios } from "../data/servicios";
+import {
+  ArrowRight,
+  Check,
+  ShoppingCart,
+  BarChart3,
+  Package,
+  CreditCard,
+  Globe,
+  Users,
+  Zap,
+  Printer,
+  Smartphone,
+  Repeat,
+  Search,
+} from "lucide-astro";
+---
+
+<Base
+  title={`¿Para qué sirve un sistema POS? Guía completa para tu negocio en LATAM`}
+  description={`Un sistema POS (Punto de Venta) sirve para cobrar, controlar inventario, gestionar clientes, administrar crédito y generar reportes. Guía completa para comercios LATAM.`}
+  ldExtra={[
+    {
+      "@type": "BreadcrumbList",
+      name: "Navegación",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: "https://tiendapos-app.vercel.app/" },
+        { "@type": "ListItem", position: 2, name: "¿Para qué sirve un POS?", item: "https://tiendapos-app.vercel.app/para-que-sirve" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      name: "Preguntas frecuentes — ¿Para qué sirve un sistema POS?",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "¿Qué es un sistema POS y para qué sirve?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Un sistema POS (Punto de Venta) es un software que automatiza las ventas, el cobro, el control de inventario y la gestión de clientes de un negocio. Sirve para cobrar más rápido, llevar el control exacto del stock, gestionar crédito, generar tickets de venta y obtener reportes de rentabilidad. En lugar de usar una calculadora y un cuaderno, el POS hace todo automáticamente.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Cuáles son las funciones principales de un POS?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            "text": "Las funciones principales son: cobro con múltiples métodos de pago (efectivo, tarjeta, transferencia, Zelle, USDT), control de inventario en tiempo real, gestión de clientes con historial de compras, ventas al crédito con límites personalizados, generación de tickets y comprobantes, cierre de caja automático, reportes de ventas y rentabilidad, y gestión de múltiples almacenes.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Qué negocios necesitan un sistema POS?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            "text": "Cualquier negocio que venda productos o servicios al público puede beneficiarse de un POS: abastos y bodegas, farmacias, ferreterías, licorerías, tiendas de ropa y calzado, mini markets, restaurantes, tiendas de conveniencia, y cadenas con múltiples sucursales.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Cómo ayuda un POS al control de inventario?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            "text": "Un POS actualiza el stock automáticamente con cada venta. Sabés exactamente cuántas unidades tenés de cada producto, en qué almacén están, cuándo vence cada lote, y cuándo es momento de reabastecer. Elimina el conteo manual y reduce las pérdidas por merma o vencimiento.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "¿Un POS puede manejar varias monedas?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            "text": "Sí. Los sistemas POS modernos como TiendaPOS soportan múltiples monedas (USD, VES, COP, MXN, ARS, PEN, CLP, BOB, UYU, EUR). Permiten pagos mixtos en varias monedas en una misma venta, con tasas de cambio automáticas actualizadas vía API.",
+          },
+        },
+      ],
+    },
+  ]}
+>
+  <Navbar />
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 bg-dark-primary">
+      <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+      <div class="absolute top-1/3 -right-32 w-96 h-96 bg-amber/10 rounded-full blur-[100px] pointer-events-none" />
+      <div class="container-main relative">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber/10 border border-amber/20 text-amber text-xs font-mono mb-4">
+            <Zap size={12} />
+            GUÍA COMPLETA
+          </div>
+          <h1 class="text-zinc-100 text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-display font-black leading-[1.1] mb-4">
+            ¿Para qué sirve un <span class="text-amber">sistema POS?</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl leading-relaxed">
+            Un sistema de Punto de Venta (POS) no es solo una caja registradora digital.
+            Es el cerebro de tu negocio: cobra, controla inventario, gestiona clientes,
+            administra crédito y te muestra en tiempo real cómo va tu negocio.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <a href={waUrl("Hola, quiero saber más sobre cómo TiendaPOS puede ayudar a mi negocio")} target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-amber text-zinc-900 font-semibold text-sm hover:bg-amber-dark transition-all">
+              Probar gratis 14 días
+              <ArrowRight size={16} />
+            </a>
+            <a href="/servicios" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 font-semibold text-sm hover:bg-zinc-800/50 transition-all">
+              Ver soluciones por rubro
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ¿Qué es un POS? -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+              Más que una caja registradora.<br />
+              <span class="text-amber">El centro de tu negocio.</span>
+            </h2>
+            <p class="text-zinc-400 leading-relaxed mb-6">
+              Un sistema POS moderno reemplaza la calculadora, el cuaderno de apuntes,
+              la libreta de fiado y el excel de inventario. Todo en un solo lugar,
+              actualizado al instante y accesible desde cualquier dispositivo con internet.
+            </p>
+            <ul class="space-y-3">
+              {[
+                "Cobrás en segundos con múltiples métodos de pago (efectivo, tarjeta, Zelle, USDT, transferencia)",
+                "El inventario se actualiza solo con cada venta que hacés",
+                "Sabés al instante quién te debe, cuánto y desde cuándo",
+                "Generás tickets y comprobantes de venta con los datos de tu país",
+                "Cerrás caja con un clic y el cuadre te lo hace el sistema",
+                "Ves la rentabilidad de tu negocio en tiempo real desde cualquier lado",
+              ].map((item) => (
+                <li class="flex items-start gap-3 text-zinc-300 text-sm">
+                  <div class="flex-shrink-0 w-5 h-5 rounded-full bg-amber/20 flex items-center justify-center mt-0.5">
+                    <Check size={12} class="text-amber" />
+                  </div>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="rounded-xl overflow-hidden bg-zinc-900/80 border border-zinc-800 shadow-xl">
+            <div class="px-5 py-4 border-b border-zinc-800 bg-zinc-900/50">
+              <div class="flex items-center gap-2">
+                <Search size={14} class="text-amber" />
+                <span class="label-tag text-zinc-500">ANTES VS AHORA</span>
+              </div>
+            </div>
+            <div class="p-5 space-y-4">
+              {[
+                { antes: "Calculadora + cuaderno", ahora: "POS con escaneo y cobro automático", check: true },
+                { antes: "Inventario cada 3 meses", ahora: "Stock en tiempo real, alertas automáticas", check: true },
+                { antes: "Libreta de fiado manual", ahora: "Crédito digital con límites y abonos", check: true },
+                { antes: "Cierre de caja a mano", ahora: "Arqueo automático con desglose por moneda", check: true },
+                { antes: "Reportes en Excel", ahora: "Dashboard con KPIs en vivo", check: true },
+              ].map((item) => (
+                <div class="flex items-center gap-4 p-3 rounded-lg bg-zinc-800/30 border border-zinc-700/40">
+                  <div class="flex-1">
+                    <div class="text-zinc-500 text-xs font-mono mb-0.5">ANTES</div>
+                    <div class="text-zinc-400 text-sm line-through">{item.antes}</div>
+                  </div>
+                  <ArrowRight size={14} class="text-zinc-600 shrink-0" />
+                  <div class="flex-1">
+                    <div class="text-amber text-xs font-mono mb-0.5">AHORA</div>
+                    <div class="text-zinc-100 text-sm font-medium">{item.ahora}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funciones principales -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main">
+        <div class="text-center mb-14">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-3">
+            ¿Qué podés hacer con un POS?
+          </h2>
+          <p class="text-zinc-500 max-w-lg mx-auto">
+            Estas son las funciones principales que todo sistema de punto de venta debería tener.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            {
+              icono: ShoppingCart,
+              titulo: "Cobrar más rápido",
+              desc: "Escaneás el producto, seleccionás el método de pago y la venta está lista en segundos. Pagos mixtos: efectivo + tarjeta + Zelle + USDT en una sola transacción.",
+            },
+            {
+              icono: Package,
+              titulo: "Controlar inventario",
+              desc: "Stock actualizado al instante tras cada venta. Alertas cuando algo se agota, control de lotes con fechas de vencimiento y múltiples almacenes.",
+            },
+            {
+              icono: CreditCard,
+              titulo: "Gestionar crédito y fiado",
+              desc: "Límites de crédito por cliente, abonos parciales en cualquier moneda, días de plazo configurables y bloqueo automático al exceder el límite.",
+            },
+            {
+              icono: Users,
+              titulo: "Administrar clientes",
+              desc: "Historial de compras, tipos de cliente (natural, jurídico, mayorista, VIP), listas de precio personalizadas y cartera de créditos en tiempo real.",
+            },
+            {
+              icono: Printer,
+              titulo: "Emitir tickets y comprobantes",
+              desc: "Tickets de venta con los datos fiscales de tu país: RIF, NIT, RFC, CUIT o RUC. Numeración correlativa, IVA desglosado e IGTF en línea aparte.",
+            },
+            {
+              icono: BarChart3,
+              titulo: "Ver reportes en tiempo real",
+              desc: "Dashboard con ventas del día, rentabilidad por producto, productos más vendidos, cartera de créditos, margen real y cierre de caja automático.",
+            },
+            {
+              icono: Globe,
+              titulo: "Trabajar con múltiples monedas",
+              desc: "9 monedas LATAM con tasas automáticas vía API. Pagos mixtos multimoneda, IGTF 3% configurable y cierre de caja con desglose por moneda.",
+            },
+            {
+              icono: Repeat,
+              titulo: "Gestionar múltiples sucursales",
+              desc: "Arquitectura multi-tenant: cada sucursal opera independiente con datos aislados. Traslados de stock entre sedes y reportes consolidados para dueños.",
+            },
+            {
+              icono: Smartphone,
+              titulo: "Acceder desde cualquier lado",
+              desc: "Sistema 100% web. Funciona en cualquier navegador, desde cualquier dispositivo con internet. No necesitas instalar nada.",
+            },
+          ].map((f) => (
+            <div class="p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/60 hover:border-amber/20 transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-amber/10 flex items-center justify-center mb-4 group-hover:bg-amber/20 transition-all">
+                <f.icono size={18} class="text-amber" />
+              </div>
+              <h3 class="font-display font-bold text-zinc-100 mb-2">{f.titulo}</h3>
+              <p class="text-zinc-400 text-sm leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Soluciones por rubro -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <div class="text-center mb-14">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-3">
+            Un POS para <span class="text-amber">cada tipo de negocio</span>
+          </h2>
+          <p class="text-zinc-500 max-w-lg mx-auto">
+            No todos los negocios son iguales. Elegí el tuyo y descubrí cómo TiendaPOS se adapta a tu rubro.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {servicios.map((s) => (
+            <a href={`/servicios/${s.slug}`} class="group p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/60 hover:border-amber/30 transition-all">
+              <h3 class="font-display font-bold text-zinc-100 group-hover:text-amber transition-colors">{s.titulo}</h3>
+              <p class="text-zinc-500 text-sm mt-2 line-clamp-2">{s.descripcion}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios generales -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+              ¿Por qué tu negocio <span class="text-amber">necesita</span> un POS hoy?
+            </h2>
+            <div class="space-y-4">
+              {[
+                {
+                  problema: "Perdés ventas porque el mostrador es lento",
+                  solucion: "Con un POS escaneás y cobrás en segundos. Más velocidad = más ventas.",
+                },
+                {
+                  problema: "No sabés exactamente qué tenés en inventario",
+                  solucion: "Stock actualizado al instante. Alertas cuando algo se agota. Sin conjeturas.",
+                },
+                {
+                  problema: "Se te pierde la cuenta de quién te debe y cuánto",
+                  solucion: "Cartera de créditos digital con saldos, vencimientos y bloqueo automático.",
+                },
+                {
+                  problema: "Pasás horas haciendo el cierre de caja a mano",
+                  solucion: "Cierre automático con arqueo y desglose por moneda. Diferencia calculada al instante.",
+                },
+                {
+                  problema: "No sabés si estás ganando o perdiendo dinero",
+                  solucion: "Dashboard con rentabilidad real, márgenes y reportes en tiempo real.",
+                },
+                {
+                  problema: "Tasas de cambio y conversiones manuales te quitan tiempo",
+                  solucion: "Multimoneda automática con tasas vía API. Pagos mixtos sin cálculos manuales.",
+                },
+              ].map((item) => (
+                <div class="flex gap-4 p-4 rounded-lg bg-zinc-900/40 border border-zinc-800/40">
+                  <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center mt-0.5">
+                    <span class="text-red-400 text-xs font-bold">!</span>
+                  </div>
+                  <div>
+                    <div class="text-zinc-200 text-sm font-medium mb-0.5">{item.problema}</div>
+                    <div class="text-emerald-400 text-sm">{item.solucion}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="rounded-xl overflow-hidden bg-zinc-900/80 border border-zinc-800 shadow-xl">
+            <div class="px-5 py-4 border-b border-zinc-800 bg-zinc-900/50">
+              <div class="flex items-center gap-2">
+                <Globe size={14} class="text-amber" />
+                <span class="label-tag text-zinc-500">ADAPTADO A LATAM</span>
+              </div>
+            </div>
+            <div class="p-5 space-y-4">
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                La mayoría de los sistemas POS están diseñados para Estados Unidos o Europa.
+                No entienden de IGTF, no saben qué es un RIF y no manejan pagos mixtos en USD/VES.
+              </p>
+              <p class="text-zinc-400 text-sm leading-relaxed">
+                TiendaPOS fue construido desde el día uno para Latinoamérica:
+              </p>
+              <ul class="space-y-2">
+                {[
+                  "9 países con impuestos y campos fiscales configurados automáticamente",
+                  "IGTF 3% para Venezuela configurable por método de pago",
+                  "15 monedas incluyendo VES, COP, ARS, CLP, BOB, UYU, PEN, MXN",
+                  "Pagos mixtos: efectivo USD + Zelle + pago móvil VES + USDT en una venta",
+                  "Tasas de cambio automáticas vía API o manuales (BCV, paralelo)",
+                  "Soporte para crédito y fiado, esencial en el comercio LATAM",
+                ].map((item) => (
+                  <li class="flex items-start gap-3 text-zinc-300 text-sm">
+                    <div class="flex-shrink-0 w-5 h-5 rounded-full bg-amber/20 flex items-center justify-center mt-0.5">
+                      <Check size={12} class="text-amber" />
+                    </div>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main text-center">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+          ¿Listo para dejar atrás la calculadora y el cuaderno?
+        </h2>
+        <p class="text-zinc-400 max-w-lg mx-auto mb-8">
+          14 días gratis. Sin tarjeta de crédito. Acceso completo a todas las funciones del plan Pro.
+        </p>
+        <a href={waUrl("Hola, quiero probar TiendaPOS gratis 14 días")} target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-amber text-zinc-900 font-bold text-base hover:bg-amber-dark transition-all">
+          Probar gratis ahora
+          <ArrowRight size={18} />
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
