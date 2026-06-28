@@ -166,6 +166,14 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
 
     <!-- Theme color -->
     <meta name="theme-color" content="#0A0A0B" />
+
+    <!-- Google Customer Reviews — Merchant Widget -->
+    <script id="merchantWidgetScript" src="https://www.gstatic.com/shopping/merchant/merchantwidget.js" defer></script>
+    <script>
+      merchantWidgetScript.addEventListener("load", function () {
+        merchantwidget.start({ position: "RIGHT_BOTTOM" });
+      });
+    </script>
   </head>
   <body class="antialiased">
     <!-- Scroll progress bar -->
