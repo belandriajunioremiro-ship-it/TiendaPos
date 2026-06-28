@@ -1,106 +1,132 @@
 ---
-import { Code2, Terminal, Copy, Check, ArrowRight } from "lucide-astro";
+import { BarChart3, TrendingUp, Users, DollarSign, ArrowRight } from "lucide-astro";
+import { tiendasTenant } from "../data/content";
 ---
 
 <section class="relative overflow-hidden py-20 lg:py-28 bg-dark-secondary">
-  <!-- Background -->
   <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
   <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
 
   <div class="container-main relative">
     <div class="max-w-3xl mb-12">
       <h2 class="gsap-fade-up text-zinc-100">
-        112 endpoints listos<br />
-        <span class="text-amber">para integrar.</span>
+        Todo lo que necesitás<br />
+        <span class="text-amber">en un solo lugar.</span>
       </h2>
 
       <p class="gsap-fade-up mt-5 text-lg text-zinc-400 max-w-2xl" style="transition-delay: 0.1s;">
-        REST con Laravel Sanctum, respuestas JSON estructuradas y documentación OpenAPI.
-        Conecta tu frontend, app móvil o ERP sin fricción.
+        Dashboard con KPIs en tiempo real, control de inventario, ventas al crédito, multimoneda,
+        cierre de caja y reportes. Una plataforma completa para tu negocio.
       </p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-5">
-      <!-- Endpoints -->
+      <!-- KPIs -->
       <div class="p-6 lg:p-8 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
         <div class="flex items-center gap-2 mb-5">
-          <Terminal size={16} class="text-amber" />
-          <span class="label-tag text-zinc-500">ENDPOINTS DISPONIBLES</span>
+          <BarChart3 size={16} class="text-amber" />
+          <span class="label-tag text-zinc-500">PANEL DE CONTROL</span>
         </div>
 
-        <div class="space-y-2 font-mono text-sm">
+        <div class="grid grid-cols-2 gap-3">
           {[
-            { method: "GET", path: "/api/v1/productos", status: "200" },
-            { method: "POST", path: "/api/v1/ventas", status: "201" },
-            { method: "GET", path: "/api/v1/inventario", status: "200" },
-            { method: "POST", path: "/api/v1/cajas/{id}/abrir", status: "200" },
-          ].map((e) => (
-            <div class="flex items-center gap-3 p-3 rounded-lg bg-zinc-800/40 border border-zinc-700/30 hover:border-zinc-600 transition-colors">
-              <span class={`px-2.5 py-1 text-[10px] font-bold rounded ${
-                e.method === "GET"
-                  ? "bg-emerald-500/20 text-emerald-400"
-                  : "bg-amber/20 text-amber"
-              }`}>{e.method}</span>
-              <span class="text-zinc-300 flex-1">{e.path}</span>
-              <span class="text-zinc-500 nums text-xs">{e.status}</span>
+            { icono: DollarSign, label: "Ventas hoy", valor: "$2,840", color: "text-emerald-400", bg: "bg-emerald-500/10" },
+            { icono: TrendingUp, label: "Margen promedio", valor: "23.5%", color: "text-amber", bg: "bg-amber/10" },
+            { icono: Users, label: "Clientes activos", valor: "156", color: "text-sky-400", bg: "bg-sky-500/10" },
+            { icono: BarChart3, label: "Productos vendidos", valor: "1,342", color: "text-purple-400", bg: "bg-purple-500/10" },
+          ].map((kpi) => (
+            <div class="p-4 rounded-lg bg-zinc-800/40 border border-zinc-700/30">
+              <div class={`w-8 h-8 rounded-lg ${kpi.bg} flex items-center justify-center mb-3`}>
+                <kpi.icono size={16} class={kpi.color} />
+              </div>
+              <div class="text-zinc-500 text-xs font-mono mb-1">{kpi.label}</div>
+              <div class="text-zinc-100 text-xl font-bold nums">{kpi.valor}</div>
             </div>
           ))}
         </div>
 
-        <ul class="mt-6 space-y-3 text-sm text-zinc-400">
-          {[
-            "112 endpoints RESTful protegidos con Sanctum",
-            "Consume desde cualquier frontend",
-            "Documentación completa y respuestas JSON estructuradas",
-          ].map((item) => (
-            <li class="flex items-start gap-2">
-              <Check size={15} class="shrink-0 mt-0.5 text-emerald-500" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <!-- Code snippet -->
-      <div class="p-6 lg:p-8 rounded-xl bg-zinc-900/40 border border-zinc-800/50">
-        <div class="flex items-center justify-between mb-5">
-          <div class="flex items-center gap-2">
-            <Code2 size={16} class="text-amber" />
-            <span class="label-tag text-zinc-500">crear-venta.ts</span>
+        <div class="mt-5 p-4 rounded-lg bg-zinc-800/30 border border-zinc-700/30">
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-zinc-400">Últimas ventas</span>
+            <span class="text-zinc-600 font-mono text-xs">Hoy 03:30 PM</span>
           </div>
-          <div class="flex gap-1.5">
-            <span class="px-2 py-1 bg-zinc-800 text-zinc-500 text-[10px] font-mono rounded">TypeScript</span>
-            <span class="px-2 py-1 bg-zinc-800 text-zinc-500 text-[10px] font-mono rounded">UTF-8</span>
+          <div class="mt-3 space-y-2">
+            {[
+              { cliente: "María González", total: "$45.20", metodo: "USD efectivo" },
+              { cliente: "Carlos Méndez", total: "$18.62", metodo: "Mixto USD/VES" },
+              { cliente: "Distribuidora Los Andes", total: "$320.00", metodo: "Crédito 30 días" },
+            ].map((v) => (
+              <div class="flex items-center justify-between py-2 border-b border-zinc-800 last:border-0">
+                <div>
+                  <div class="text-zinc-300 text-sm">{v.cliente}</div>
+                  <div class="text-zinc-600 text-[10px] font-mono">{v.metodo}</div>
+                </div>
+                <span class="text-amber nums font-bold">{v.total}</span>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        <pre class="font-mono text-xs leading-relaxed text-zinc-300 overflow-x-auto"><code><span class="text-amber">import</span> {"{ TiendaPOS }"} <span class="text-amber">from</span> <span class="text-emerald-400">'@tiendapos/sdk'</span>;
+      <!-- Features list -->
+      <div class="p-6 lg:p-8 rounded-xl bg-zinc-900/40 border border-zinc-800/50">
+        <div class="flex items-center gap-2 mb-5">
+          <TrendingUp size={16} class="text-amber" />
+          <span class="label-tag text-zinc-500">LO QUE INCLUYE</span>
+        </div>
 
-<span class="text-amber">const</span> pos = <span class="text-amber">new</span> <span class="text-amber">TiendaPOS</span>({"{"}
-  tenant: <span class="text-emerald-400">'mi-negocio'</span>,
-  currency: <span class="text-emerald-400">'USD'</span>
-{"}"});
+        <div class="space-y-3">
+          {[
+            {
+              cat: "VENTAS",
+              items: [
+                "POS rápido con escaneo de código de barras",
+                "Pagos mixtos: efectivo + tarjeta + Zelle + USDT",
+                "Ventas al crédito con abonos multimoneda",
+                "Facturación fiscal con IVA e IGTF separados",
+              ],
+            },
+            {
+              cat: "INVENTARIO",
+              items: [
+                "Stock en tiempo real tras cada operación",
+                "Múltiples almacenes con traslados",
+                "Control de lotes FEFO con alertas",
+                "Órdenes de compra con recepción parcial",
+              ],
+            },
+            {
+              cat: "REPORTES",
+              items: [
+                "Dashboard con KPIs en tiempo real",
+                "Rentabilidad por producto y categoría",
+                "Cartera de créditos con días de mora",
+                "Cierre de caja multimoneda automático",
+              ],
+            },
+          ].map((grupo) => (
+            <div>
+              <div class="text-[10px] font-mono text-zinc-600 mb-2 tracking-widest">{grupo.cat}</div>
+              <div class="grid sm:grid-cols-2 gap-2">
+                {grupo.items.map((item) => (
+                  <div class="flex items-start gap-2 p-2.5 rounded-lg bg-zinc-800/30 border border-zinc-700/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                    <span class="text-zinc-400 text-sm">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
 
-<span class="text-amber">const</span> venta = <span class="text-amber">await</span> pos.ventas.crear({"{"}
-  items: [{"{"} producto: <span class="text-emerald-400">'Harina PAN'</span>, precio: <span class="text-amber">2.5</span>, cantidad: <span class="text-amber">2</span> {"}"}],
-  metodoPago: <span class="text-emerald-400">'mixto'</span>,
-  cliente: {"{"} rif: <span class="text-emerald-400">'J-12345678-9'</span> {"}"}
-{"}"});
-
-console.<span class="text-amber">log</span>(venta.factura.numero);
-<span class="text-zinc-600">// FAC-001-00000042</span></code></pre>
-
-        <div class="mt-5 p-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10">
-          <div class="flex items-center gap-2 text-emerald-400 text-xs font-mono">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            POS CONNECTED • 200 OK
+        <div class="mt-6 p-4 rounded-lg border border-amber/20 bg-amber/5">
+          <div class="flex items-center gap-2 text-amber text-xs font-mono mb-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber animate-pulse" />
+            MULTIMONEDA ACTIVA
           </div>
-          <pre class="mt-2 text-xs text-zinc-400 font-mono">{`{
-  "id": 42,
-  "factura": "FAC-001-00000042",
-  "total": 18.62,
-  "moneda": "USD"
-}`}</pre>
+          <div class="text-zinc-400 text-sm">
+            9 monedas LATAM • IGTF 3% automático • Pagos mixtos • Cierre multimoneda
+          </div>
         </div>
       </div>
     </div>

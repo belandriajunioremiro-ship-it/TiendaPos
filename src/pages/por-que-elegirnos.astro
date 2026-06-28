@@ -10,7 +10,7 @@ import {
   Shield,
   Database,
   Globe,
-  Code,
+  BarChart3,
   Users,
   Layers,
   Zap,
@@ -25,7 +25,7 @@ import {
 
 <Base
   title={`Por qué elegir TiendaPOS — ${site.name}`}
-  description={`Multi-tenant real con aislamiento PostgreSQL, 15 monedas, IGTF automático, 112 endpoints API, roles y permisos Spatie. La plataforma POS más completa para LATAM.`}
+  description={`Multi-tenant real con aislamiento PostgreSQL, 15 monedas, IGTF automático, roles y permisos por usuario. La plataforma POS más completa para LATAM.`}
 >
   <Navbar />
 
@@ -46,7 +46,7 @@ import {
           </h1>
           <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl leading-relaxed">
             TiendaPOS no es un sistema de caja común. Es una plataforma SaaS construida con arquitectura multi-tenant real,
-            PostgreSQL con aislamiento por tienda, 112 endpoints API REST, multimoneda, IGTF automático y
+            PostgreSQL con aislamiento por tienda, multimoneda, IGTF automático y
             roles granulares. Esto es lo que nos diferencia.
           </p>
           <div class="flex flex-wrap gap-3 mt-8">
@@ -167,10 +167,10 @@ import {
               detalles: "9 monedas LATAM • USD • EUR • GBP • BRL • USDT • BTC",
             },
             {
-              icono: Code,
-              titulo: "112 endpoints API REST",
-              desc: "No es un sistema cerrado. Es una API completa con Laravel 11 + Sanctum. Podés conectar tu propio frontend, apps móviles o integraciones. Documentación completa de cada endpoint con filtros, middleware y respuestas.",
-              detalles: "Productos • Ventas • Clientes • Caja • Inventario • Créditos • Reportes",
+              icono: BarChart3,
+              titulo: "Dashboard con KPIs en tiempo real",
+              desc: "Panel de control con indicadores clave: ventas hoy, margen promedio, clientes activos, productos vendidos. Últimas ventas en vivo, cartera de créditos, stock bajo y rentabilidad por producto. Todo actualizado al instante.",
+              detalles: "Ventas • Rentabilidad • Cartera • Stock • Cierre de caja",
             },
             {
               icono: Users,
@@ -240,7 +240,7 @@ import {
               {[
                 {
                   que: "Un POS de caja cerrado",
-                  contra: "Tenés API, podés conectar lo que quieras. No dependés de nosotros para integrar.",
+                  contra: "Podés personalizar precios, márgenes, impuestos, métodos de pago y más. No estás limitado a lo que viene por defecto.",
                 },
                 {
                   que: "SQLite compartido",
@@ -256,7 +256,7 @@ import {
                 },
                 {
                   que: "Sin control de acceso",
-                  contra: "Roles Spatie con 69 permisos, middlewares por capa, tokens Sanctum con abilities.",
+                  contra: "Roles Spatie con 69 permisos, middlewares por capa, control granular de acceso.",
                 },
                 {
                   que: "Facturación fiscal certificada",
@@ -288,7 +288,7 @@ import {
               {[
                 "Plataforma SaaS multi-tenant con PostgreSQL",
                 "Multimoneda real con snapshots inmutables",
-                "API REST con 112 endpoints para integrar",
+                "Dashboard con KPIs en tiempo real",
                 "IGTF automático para Venezuela",
                 "Roles y permisos granulares (admin, supervisor, cajero)",
                 "Onboarding en 4 pasos con auto-siembra por país",
