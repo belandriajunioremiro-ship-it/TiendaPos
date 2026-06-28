@@ -24,7 +24,17 @@ const otros = servicios.filter((s) => s.slug !== servicio.slug);
       name: servicio.tituloH1,
       description: servicio.metaDescripcion,
       provider: { "@type": "Organization", name: site.name },
-      areaServed: ["VE", "CO", "MX", "EC", "AR", "PE", "CL", "BO", "UY"],
+      areaServed: [
+        { "@type": "Country", "name": "Venezuela" },
+        { "@type": "Country", "name": "Colombia" },
+        { "@type": "Country", "name": "México" },
+        { "@type": "Country", "name": "Ecuador" },
+        { "@type": "Country", "name": "Argentina" },
+        { "@type": "Country", "name": "Perú" },
+        { "@type": "Country", "name": "Chile" },
+        { "@type": "Country", "name": "Bolivia" },
+        { "@type": "Country", "name": "Uruguay" },
+      ],
       serviceType: `Sistema POS para ${servicio.titulo}`,
       offers: {
         "@type": "AggregateOffer",

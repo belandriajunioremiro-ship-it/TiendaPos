@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: "https://tiendapos-app.vercel.app",
+  trailingSlash: "always",
   integrations: [
     react(),
     mdx(),

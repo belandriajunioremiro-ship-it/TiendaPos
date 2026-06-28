@@ -24,6 +24,7 @@ const ldWebSite = {
   name: site.name,
   url: siteUrl,
   description: site.description,
+  image: `${Astro.site}og-image.png`,
   inLanguage: "es",
   potentialAction: {
     "@type": "SearchAction",
@@ -38,6 +39,7 @@ const ldOrganization = {
   url: siteUrl,
   description: site.description,
   logo: `${Astro.site}og-image.png`,
+  image: `${Astro.site}og-image.png`,
   foundingDate: "2025",
   address: {
     "@type": "PostalAddress",
@@ -74,7 +76,21 @@ const ldSoftware = {
     lowPrice: "0",
     highPrice: "45",
     priceCurrency: "USD",
-    offerCount: 4,
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: "45",
+      priceCurrency: "USD",
+      billingDuration: {
+        "@type": "QuantitativeValue",
+        value: "1",
+        unitCode: "MON",
+      },
+      billingIncrement: {
+        "@type": "QuantitativeValue",
+        value: "1",
+        unitCode: "MON",
+      },
+    },
   },
 };
 
