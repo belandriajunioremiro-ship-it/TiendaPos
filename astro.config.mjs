@@ -18,7 +18,7 @@ export default defineConfig({
         if (page.url === "https://tiendapos-app.vercel.app/") {
           return { ...page, priority: 1.0, changefreq: 'daily' };
         }
-        if (page.url.includes('/servicios/') || page.url.includes('/por-que-elegirnos')) {
+        if (page.url.includes('/servicios/') || page.url.includes('/por-que-elegirnos') || page.url.includes('/simula-tu-venta')) {
           return { ...page, priority: 0.9, changefreq: 'weekly' };
         }
         if (page.url.includes('/aviso-legal') || page.url.includes('/terminos') || page.url.includes('/privacidad')) {
