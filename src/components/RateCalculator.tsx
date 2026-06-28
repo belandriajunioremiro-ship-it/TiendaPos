@@ -99,7 +99,7 @@ export default function RateCalculator() {
   const updateVenta = (patch: Partial<CurrencyConfig>) => setVenta((prev) => ({ ...prev, ...patch }));
 
   return (
-    <section className="relative overflow-hidden py-20 lg:py-28 bg-dark-primary">
+    <section className="relative overflow-hidden pt-28 sm:pt-36 lg:pt-44 pb-20 lg:pb-28 bg-dark-primary">
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="absolute top-1/3 -right-32 w-96 h-96 bg-amber/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-amber/5 rounded-full blur-[80px] pointer-events-none" />
