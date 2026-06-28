@@ -2,7 +2,8 @@
 import "../styles/global.css";
 import { site } from "../data/content";
 import WhatsAppChat from "../components/WhatsAppChat";
-import GoogleRating from "../components/GoogleRating.astro";
+import WaitlistModal from "../components/WaitlistModal.astro";
+
 
 interface Props {
   title?: string;
@@ -212,7 +213,7 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
     </script>
 
     <WhatsAppChat client:idle />
-    <GoogleRating />
+    <WaitlistModal client:idle />
 
     <script>
       import { gsap } from "gsap";

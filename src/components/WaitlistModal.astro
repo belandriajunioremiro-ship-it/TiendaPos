@@ -1,0 +1,96 @@
+---
+const waUrl = "https://wa.me/584247253544?text=Hola%20quiero%20unirme%20a%20la%20lista%20de%20espera";
+---
+
+<dialog
+  id="waitlist-modal"
+  class="fixed inset-0 z-50 m-auto h-fit max-h-[90vh] w-[92%] max-w-md rounded-2xl border border-zinc-700/50 bg-zinc-900/95 p-0 shadow-2xl shadow-black/50 backdrop:bg-black/60 backdrop:backdrop-blur-sm open:flex open:flex-col [&::backdrop]:bg-black/60 [&::backdrop]:backdrop-blur-sm"
+  style="display: none;"
+>
+  <div class="relative overflow-hidden rounded-2xl">
+    <div class="absolute inset-0 bg-gradient-to-br from-amber/10 via-transparent to-purple-500/10 pointer-events-none" />
+    <div class="absolute -top-20 -right-20 w-40 h-40 bg-amber/20 rounded-full blur-[60px] pointer-events-none" />
+    <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/20 rounded-full blur-[60px] pointer-events-none" />
+
+    <button
+      id="waitlist-close"
+      class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-zinc-800/80 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-zinc-100 transition-all border border-zinc-700/50"
+      aria-label="Cerrar"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+
+    <div class="relative p-6 sm:p-8 flex flex-col items-center text-center">
+      <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber to-amber-dark flex items-center justify-center mb-4 shadow-lg shadow-amber/20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A0A0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </div>
+
+      <h2 class="text-xl sm:text-2xl font-display font-bold text-zinc-100 mb-2">
+        🚀 Únete a la lista de espera
+      </h2>
+      <p class="text-sm sm:text-base text-zinc-400 mb-6 max-w-sm leading-relaxed">
+        Sé de los primeros en probar las nuevas funciones y accede a contenido exclusivo antes que nadie.
+      </p>
+
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300"
+        style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: #0A0A0B;"
+      >
+        <span class="absolute inset-0 rounded-xl bg-amber/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+        <span class="relative">Unirme a la lista por WhatsApp</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const MODAL_DELAY = 20000;
+  const MODAL_COOKIE = "waitlist_shown";
+
+  const dialog = document.getElementById("waitlist-modal") as HTMLDialogElement;
+  const closeBtn = document.getElementById("waitlist-close");
+
+  function getCookie(name: string): string | null {
+    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+    return match ? decodeURIComponent(match[2]) : null;
+  }
+
+  function setCookie(name: string, value: string, days: number) {
+    const d = new Date();
+    d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+    document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/;SameSite=Lax`;
+  }
+
+  function showModal() {
+    if (!dialog) return;
+    if (getCookie(MODAL_COOKIE) === "true") return;
+    dialog.style.display = "flex";
+    dialog.showModal();
+    setCookie(MODAL_COOKIE, "true", 7);
+  }
+
+  function closeModal() {
+    if (!dialog) return;
+    dialog.style.display = "none";
+    dialog.close();
+  }
+
+  setTimeout(showModal, MODAL_DELAY);
+
+  closeBtn?.addEventListener("click", closeModal);
+
+  dialog?.addEventListener("click", (e) => {
+    const rect = dialog.getBoundingClientRect();
+    const isOutside = e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom;
+    if (isOutside) closeModal();
+  });
+
+  dialog?.addEventListener("cancel", (e) => {
+    e.preventDefault();
+    closeModal();
+  });
+</script>
