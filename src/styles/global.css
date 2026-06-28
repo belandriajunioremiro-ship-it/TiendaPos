@@ -8,6 +8,9 @@
    ============================================================ */
 
 @theme {
+  /* --- Breakpoints --- */
+  --breakpoint-xs: 375px;
+
   /* --- Black Section Tones --- */
   --color-dark-primary: #0A0A0B;
   --color-dark-secondary: #111113;
