@@ -16,9 +16,20 @@ import Footer from "../components/Footer.astro";
 import Ticker from "../components/Ticker.astro";
 import TrialBar from "../components/TrialBar.astro";
 import Negocios from "../components/Negocios.astro";
+import { faq } from "../data/content";
+
+const faqLd = [{
+  "@type": "FAQPage",
+  name: "Preguntas frecuentes — TiendaPOS",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+}];
 ---
 
-<Base title="TiendaPOS — POS Multi-País para Latinoamérica" description="Sistema de punto de venta multi-país para farmacias, abastos, ferreterías y comercios en 9 países LATAM. Multi-moneda, IGTF automático y control de inventario.">
+<Base title="TiendaPOS | Sistema POS Multi-País para Latinoamérica" description="Sistema de punto de venta para farmacias, abastos y ferreterías en 9 países LATAM. Multi-moneda, IGTF automático, inventario y créditos. Probá 14 días gratis." ldExtra={faqLd}>
   <Navbar />
   <main>
     <Hero />

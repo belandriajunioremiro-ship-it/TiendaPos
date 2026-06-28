@@ -18,7 +18,7 @@ const { servicio } = Astro.props;
 const otros = servicios.filter((s) => s.slug !== servicio.slug);
 ---
 
-<Base title={`${servicio.tituloH1} — ${site.name}`} description={servicio.metaDescripcion} ldExtra={[
+<Base title={`${servicio.tituloH1}`} description={servicio.metaDescripcion} ldExtra={[
     {
       "@type": "Service",
       name: servicio.tituloH1,
@@ -41,6 +41,18 @@ const otros = servicios.filter((s) => s.slug !== servicio.slug);
         { "@type": "ListItem", position: 2, name: "Servicios", item: "https://tiendapos-app.vercel.app/servicios" },
         { "@type": "ListItem", position: 3, name: servicio.titulo, item: `https://tiendapos-app.vercel.app/servicios/${servicio.slug}` },
       ],
+    },
+    {
+      "@type": "FAQPage",
+      name: `Preguntas frecuentes — ${servicio.tituloH1}`,
+      mainEntity: servicio.preguntasFrecuentes.map((faq, i) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      })),
     },
   ]}>
   <Navbar />

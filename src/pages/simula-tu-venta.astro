@@ -4,12 +4,22 @@ import Navbar from "../components/Navbar.astro";
 import RateCalculator from "../components/RateCalculator";
 import Footer from "../components/Footer.astro";
 
-const breadcrumbExtra = [{
-  "@type": "ListItem", position: 2, name: "Simulá tu venta", item: "https://tiendapos-app.vercel.app/simula-tu-venta/",
-}];
+const ldExtra = [
+  {
+    "@type": "ListItem", position: 2, name: "Simulá tu venta", item: "https://tiendapos-app.vercel.app/simula-tu-venta/",
+  },
+  {
+    "@type": "WebApplication",
+    name: "Calculadora de margen de venta — TiendaPOS",
+    description: "Calculá al instante tu margen de ganancia en USD con tasas de cambio actualizadas automáticamente. Dos monedas independientes, modo margen y modo precio.",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    browserRequirements: "Requiere JavaScript",
+  },
+];
 ---
 
-<Base title="Simulá tu venta — Calculadora de margen con tasas reales | TiendaPOS" description="Ingresá precio de compra y venta, elegí tu moneda y calculá al instante tu margen de ganancia en USD con tasas de cambio actualizadas automáticamente." ldExtra={breadcrumbExtra}>
+<Base title="Calculadora de Margen de Venta | TiendaPOS" description="Calculá tu margen de ganancia con tasas de cambio reales. Dos monedas independientes, modo margen o precio fijo. Ideal para importadores y comercios LATAM." ldExtra={ldExtra}>
   <Navbar />
   <main>
     <RateCalculator client:visible />
