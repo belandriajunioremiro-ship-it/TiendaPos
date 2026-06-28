@@ -1,0 +1,168 @@
+---
+import Base from "../../layouts/Base.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { servicios } from "../../data/servicios";
+import { site } from "../../data/content";
+import { waUrl } from "../../data/whatsapp";
+import { Check, ArrowRight, ChevronRight } from "lucide-astro";
+
+export function getStaticPaths() {
+  return servicios.map((s) => ({
+    params: { slug: s.slug },
+    props: { servicio: s },
+  }));
+}
+
+const { servicio } = Astro.props;
+const otros = servicios.filter((s) => s.slug !== servicio.slug);
+---
+
+<Base title={`${servicio.tituloH1} — ${site.name}`} description={servicio.metaDescripcion}>
+  <Navbar />
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 bg-dark-primary">
+      <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+      <div class="absolute top-1/3 -left-32 w-96 h-96 bg-amber/10 rounded-full blur-[100px] pointer-events-none" />
+      <div class="container-main relative">
+        <div class="max-w-3xl">
+          <a href="/servicios" class="inline-flex items-center gap-1 text-amber hover:text-amber-light transition-colors mb-4 text-sm font-mono">
+            <ChevronRight size={14} class="rotate-180" />
+            Todos los servicios
+          </a>
+          <h1 class="text-zinc-100 text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-display font-black leading-[1.1] mb-4">
+            {servicio.tituloH1}
+          </h1>
+          <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl leading-relaxed">
+            {servicio.heroDesc}
+          </p>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <a href={waUrl(`Hola, quiero información sobre TiendaPOS para ${servicio.titulo}`)} target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-amber text-zinc-900 font-semibold text-sm hover:bg-amber-dark transition-all">
+              Comenzar prueba gratis
+              <ArrowRight size={16} />
+            </a>
+            <a href={waUrl(`Hola, quiero agendar una demo para mi ${servicio.titulo}`)} target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 font-semibold text-sm hover:bg-zinc-800/50 transition-all">
+              Hablar con asesor
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-10">
+          Beneficios para tu <span class="text-amber">{servicio.titulo}</span>
+        </h2>
+        <div class="grid sm:grid-cols-2 gap-5">
+          {servicio.beneficios.map((b) => (
+            <div class="p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
+              <div class="w-8 h-8 rounded-full bg-amber/20 flex items-center justify-center mb-4">
+                <Check size={16} class="text-amber" />
+              </div>
+              <p class="text-zinc-300 leading-relaxed">{b.texto}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-2">
+          Cómo funciona
+        </h2>
+        <p class="text-zinc-500 mb-10">Empezá a usar TiendaPOS para tu {servicio.titulo.toLowerCase()} en 4 pasos.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {servicio.funcionamiento.map((f, i) => (
+            <div class="relative p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
+              <span class="absolute top-4 right-4 text-4xl font-display font-black text-zinc-800">0{i + 1}</span>
+              <h3 class="font-display font-bold text-zinc-100 mb-2 relative">{f.paso}</h3>
+              <p class="text-zinc-400 text-sm leading-relaxed relative">{f.texto}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Características -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-2">
+          Todo lo que incluye
+        </h2>
+        <p class="text-zinc-500 mb-10">Funcionalidades específicas para tu {servicio.titulo.toLowerCase()}.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {servicio.caracteristicas.map((c) => (
+            <div class="flex items-start gap-3 p-4 rounded-lg bg-zinc-900/40 border border-zinc-800/40">
+              <Check size={16} class="text-amber shrink-0 mt-0.5" />
+              <span class="text-zinc-300 text-sm">{c}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main max-w-3xl">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-2">
+          Preguntas frecuentes
+        </h2>
+        <p class="text-zinc-500 mb-10">Sobre TiendaPOS para {servicio.titulo.toLowerCase()}.</p>
+        <div class="space-y-3">
+          {servicio.preguntasFrecuentes.map((faq) => (
+            <details class="group rounded-xl bg-zinc-900/60 border border-zinc-800/60 overflow-hidden">
+              <summary class="flex items-center justify-between px-5 py-4 cursor-pointer text-zinc-100 font-medium hover:text-amber transition-colors list-none">
+                {faq.q}
+                <ChevronRight size={16} class="text-zinc-500 group-open:rotate-90 transition-transform" />
+              </summary>
+              <div class="px-5 pb-4 text-zinc-400 text-sm leading-relaxed border-t border-zinc-800/50 pt-3">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Otros servicios -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-10">
+          También te puede interesar
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {otros.map((o) => (
+            <a href={`/servicios/${o.slug}`} class="group p-5 rounded-xl bg-zinc-900/60 border border-zinc-800/60 hover:border-amber/30 transition-all">
+              <h3 class="font-display font-bold text-zinc-100 group-hover:text-amber transition-colors">{o.titulo}</h3>
+              <p class="text-zinc-500 text-sm mt-2 line-clamp-2">{o.descripcion}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main text-center">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+          ¿Listo para digitalizar tu {servicio.titulo.toLowerCase()}?
+        </h2>
+        <p class="text-zinc-400 max-w-lg mx-auto mb-8">
+          14 días gratis. Sin tarjeta de crédito. Cancela cuando quieras.
+        </p>
+        <a href={waUrl(`Hola, quiero empezar mi prueba gratis para mi ${servicio.titulo}`)} target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-amber text-zinc-900 font-bold text-base hover:bg-amber-dark transition-all">
+          Comenzar prueba gratis
+          <ArrowRight size={18} />
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>

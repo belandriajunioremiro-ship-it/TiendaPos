@@ -8,6 +8,15 @@ import {
 } from "lucide-astro";
 import WaButton from "../components/WaButton";
 import { waUrl } from "../data/whatsapp";
+import { ArrowRight } from "lucide-astro";
+
+const slugMap: Record<string, string> = {
+  "Mini Market": "mini-market",
+  "Farmacia": "farmacia",
+  "Licorería": "licoreria",
+  "Ferretería": "ferreteria",
+  "Abasto / Bodega": "abarrotes",
+};
 
 const negocios = [
   {
@@ -137,6 +146,9 @@ const negocios = [
                 })}
               </ul>
               <WaButton href={waUrl(n.waMsg)} label={n.waBtn} />
+              <a href={`/servicios/${slugMap[n.titulo]}`} class="inline-flex items-center gap-1 mt-3 text-amber text-sm font-medium hover:gap-2 transition-all">
+                Ver información detallada <ArrowRight size={14} />
+              </a>
             </div>
 
             <!-- Visual: imagen del rubro -->
