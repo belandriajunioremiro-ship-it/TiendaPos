@@ -15,6 +15,7 @@ export const site = {
 
 export const nav = [
   { label: "Servicios", href: "/servicios" },
+  { label: "Simula tu venta", href: "/simula-tu-venta" },
   { label: "Por qué elegirnos", href: "/por-que-elegirnos" },
   { label: "Características", href: "/#caracteristicas" },
   { label: "Negocios", href: "/#negocios" },

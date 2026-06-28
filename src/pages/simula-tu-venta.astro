@@ -1,0 +1,14 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import RateCalculator from "../components/RateCalculator";
+import Footer from "../components/Footer.astro";
+---
+
+<Base title="Simulá tu venta — Calculadora de margen con tasas reales | TiendaPOS" description="Ingresá precio de compra y venta, elegí tu moneda y calculá al instante tu margen de ganancia en USD con tasas de cambio actualizadas automáticamente.">
+  <Navbar />
+  <main>
+    <RateCalculator client:visible />
+  </main>
+  <Footer />
+</Base>
