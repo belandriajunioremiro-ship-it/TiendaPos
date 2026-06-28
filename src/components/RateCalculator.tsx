@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { TrendingUp, DollarSign, Percent, RefreshCw, ArrowRight, Coins, Calculator, Settings2, Pencil } from "lucide-react";
+import { TrendingUp, DollarSign, Percent, RefreshCw, ArrowRight, Coins, Calculator, Settings2, Pencil, ArrowLeftRight } from "lucide-react";
 
 const API_KEY = "cbb2c733d7a656bf54b29746";
 const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`;
@@ -8,7 +8,12 @@ const LATAM_CURRENCIES = ["USD", "VES", "COP", "MXN", "ARS", "PEN", "CLP", "BOB"
 
 type Rates = Record<string, number>;
 type Modo = "margen" | "precio";
-type TipoTasa = "api" | "manual";
+
+interface CurrencyConfig {
+  currency: string;
+  tipoTasa: "api" | "manual";
+  customRate: string;
+}
 
 export default function RateCalculator() {
   const [rates, setRates] = useState<Rates | null>(null);
@@ -16,13 +21,13 @@ export default function RateCalculator() {
   const [error, setError] = useState(false);
 
   const [modo, setModo] = useState<Modo>("margen");
-  const [tipoTasa, setTipoTasa] = useState<TipoTasa>("api");
 
   const [purchasePrice, setPurchasePrice] = useState("100");
+  const [compra, setCompra] = useState<CurrencyConfig>({ currency: "COP", tipoTasa: "api", customRate: "" });
+
   const [salePrice, setSalePrice] = useState("");
   const [margin, setMargin] = useState("30");
-  const [currency, setCurrency] = useState("USD");
-  const [customRate, setCustomRate] = useState("");
+  const [venta, setVenta] = useState<CurrencyConfig>({ currency: "USD", tipoTasa: "api", customRate: "" });
 
   useEffect(() => {
     const fetchRates = async () => {
@@ -45,41 +50,55 @@ export default function RateCalculator() {
     return () => clearInterval(interval);
   }, []);
 
-  const apiRate = rates ? rates[currency] || 1 : 1;
-  const activeRate = tipoTasa === "manual" && customRate ? parseFloat(customRate) : apiRate;
+  const getRate = (cfg: CurrencyConfig) => {
+    if (cfg.currency === "USD") return 1;
+    if (cfg.tipoTasa === "manual" && cfg.customRate) return parseFloat(cfg.customRate);
+    return rates?.[cfg.currency] || 1;
+  };
 
-  const purchaseUsd = currency === "USD" ? parseFloat(purchasePrice || "0") : parseFloat(purchasePrice || "0") / activeRate;
+  const rateCompra = getRate(compra);
+  const rateVenta = getRate(venta);
+
+  const purchaseUsd = compra.currency === "USD" ? parseFloat(purchasePrice || "0") : parseFloat(purchasePrice || "0") / rateCompra;
 
   let calculatedSalePrice = "";
   let calculatedMargin = 0;
   let profitUsd = 0;
+  let saleLocal = 0;
 
   if (modo === "margen") {
     const marginPct = parseFloat(margin || "0");
     const purchaseVal = parseFloat(purchasePrice || "0");
-    const saleVal = purchaseVal * (1 + marginPct / 100);
-    calculatedSalePrice = saleVal.toFixed(2);
-    const saleUsd = currency === "USD" ? saleVal : saleVal / activeRate;
+    const costInSaleCurrency = purchaseUsd * rateVenta;
+    saleLocal = costInSaleCurrency * (1 + marginPct / 100);
+    calculatedSalePrice = saleLocal.toFixed(2);
+    const saleUsd = venta.currency === "USD" ? saleLocal : saleLocal / rateVenta;
     profitUsd = saleUsd - purchaseUsd;
     calculatedMargin = marginPct;
   } else {
     const purchaseVal = parseFloat(purchasePrice || "0");
     const saleVal = parseFloat(salePrice || "0");
-    const saleUsd = currency === "USD" ? saleVal : saleVal / activeRate;
+    const saleUsd = venta.currency === "USD" ? saleVal : saleVal / rateVenta;
     profitUsd = saleUsd - purchaseUsd;
-    calculatedMargin = purchaseVal > 0 ? ((saleVal - purchaseVal) / purchaseVal) * 100 : 0;
+    saleLocal = saleVal;
+    calculatedMargin = purchaseUsd > 0 ? (profitUsd / purchaseUsd) * 100 : 0;
   }
 
-  const formattedApiRate = useMemo(() => {
-    if (!apiRate) return "—";
-    if (apiRate >= 1000) return apiRate.toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    if (apiRate >= 100) return apiRate.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    return apiRate.toLocaleString("en-US", { minimumFractionDigits: 4, maximumFractionDigits: 4 });
-  }, [apiRate]);
+  const formatRate = (rate: number) => {
+    if (!rate || rate === 1) return "1.00";
+    if (rate >= 1000) return rate.toLocaleString("es-VE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (rate >= 100) return rate.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return rate.toLocaleString("en-US", { minimumFractionDigits: 4, maximumFractionDigits: 4 });
+  };
+
+  const crossRate = venta.currency === compra.currency ? 1 : rateCompra / rateVenta;
 
   const currencies = rates
     ? Object.keys(rates).filter((c) => LATAM_CURRENCIES.includes(c)).sort()
     : LATAM_CURRENCIES;
+
+  const updateCompra = (patch: Partial<CurrencyConfig>) => setCompra((prev) => ({ ...prev, ...patch }));
+  const updateVenta = (patch: Partial<CurrencyConfig>) => setVenta((prev) => ({ ...prev, ...patch }));
 
   return (
     <section className="relative overflow-hidden py-20 lg:py-28 bg-dark-primary">
@@ -97,7 +116,7 @@ export default function RateCalculator() {
             Simulá tu venta con <span className="text-amber">tasas reales</span>
           </h2>
           <p className="text-zinc-400 mt-3 max-w-xl mx-auto">
-            Definí tu margen o precio de venta. Elegí moneda y tasa. El sistema convierte todo a USD automáticamente.
+            Elegí moneda de compra y moneda de venta. Cada una con su propia tasa. El sistema cruza todo automáticamente.
           </p>
         </div>
 
@@ -113,7 +132,6 @@ export default function RateCalculator() {
             </div>
           ) : (
             <>
-              {/* Mode selector */}
               <div className="flex items-center gap-1 p-1 rounded-xl bg-zinc-800/60 border border-zinc-700/60 mb-5 w-fit mx-auto">
                 <button
                   onClick={() => setModo("margen")}
@@ -140,147 +158,215 @@ export default function RateCalculator() {
               </div>
 
               <div className="grid lg:grid-cols-5 gap-5">
-                {/* Inputs */}
-                <div className="lg:col-span-3 p-6 lg:p-8 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
-                  <div className="flex items-center gap-2 mb-6">
-                    <Settings2 size={16} className="text-amber" />
-                    <span className="text-[10px] font-mono text-zinc-500 tracking-widest">DATOS</span>
-                  </div>
-
-                  <div className="space-y-5">
-                    <div>
-                      <label className="block text-zinc-400 text-xs font-mono mb-1.5">Precio de compra (lo que pagaste)</label>
-                      <div className="relative">
-                        <input
-                          type="number"
-                          step="0.01"
-                          min="0"
-                          value={purchasePrice}
-                          onChange={(e) => setPurchasePrice(e.target.value)}
-                          className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all"
-                        />
-                      </div>
+                <div className="lg:col-span-3 space-y-4">
+                  {/* Purchase */}
+                  <div className="p-6 lg:p-8 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
+                    <div className="flex items-center gap-2 mb-5">
+                      <DollarSign size={14} className="text-emerald-400" />
+                      <span className="text-[10px] font-mono text-zinc-500 tracking-widest">COMPRA</span>
                     </div>
-
-                    {modo === "margen" ? (
-                      <div>
-                        <label className="block text-zinc-400 text-xs font-mono mb-1.5">Margen de ganancia deseado</label>
-                        <div className="relative">
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-[1fr_120px] gap-3">
+                        <div>
+                          <label className="block text-zinc-400 text-xs font-mono mb-1.5">Precio de compra</label>
                           <input
                             type="number"
-                            step="0.1"
+                            step="0.01"
                             min="0"
-                            value={margin}
-                            onChange={(e) => setMargin(e.target.value)}
-                            className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all pr-8"
+                            value={purchasePrice}
+                            onChange={(e) => setPurchasePrice(e.target.value)}
+                            className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all"
                           />
-                          <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 font-mono text-sm">%</span>
                         </div>
-                        <div className="mt-2 p-3 rounded-lg bg-amber/10 border border-amber/20 flex items-center justify-between">
+                        <div>
+                          <label className="block text-zinc-400 text-xs font-mono mb-1.5">Moneda</label>
+                          <select
+                            value={compra.currency}
+                            onChange={(e) => updateCompra({ currency: e.target.value })}
+                            className="w-full px-3 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-sm font-medium outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all appearance-none cursor-pointer"
+                          >
+                            {currencies.map((c) => (
+                              <option key={c} value={c}>{c}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                      {compra.currency !== "USD" && (
+                        <div className="flex items-center gap-2 p-3 rounded-lg bg-zinc-800/40 border border-zinc-700/40">
+                          <div className="flex gap-1 p-0.5 rounded-md bg-zinc-800/80">
+                            <button
+                              onClick={() => updateCompra({ tipoTasa: "api" })}
+                              className={`px-2 py-1 rounded text-[10px] font-mono font-medium transition-all ${
+                                compra.tipoTasa === "api" ? "bg-amber/20 text-amber" : "text-zinc-500"
+                              }`}
+                            >
+                              API
+                            </button>
+                            <button
+                              onClick={() => updateCompra({ tipoTasa: "manual" })}
+                              className={`px-2 py-1 rounded text-[10px] font-mono font-medium transition-all flex items-center gap-0.5 ${
+                                compra.tipoTasa === "manual" ? "bg-amber/20 text-amber" : "text-zinc-500"
+                              }`}
+                            >
+                              <Pencil size={8} />
+                              Manual
+                            </button>
+                          </div>
+                          {compra.tipoTasa === "api" ? (
+                            <span className="text-zinc-500 text-xs font-mono">
+                              1 USD = <span className="text-zinc-300">{formatRate(rateCompra)}</span> {compra.currency}
+                            </span>
+                          ) : (
+                            <input
+                              type="number"
+                              step="any"
+                              min="0"
+                              value={compra.customRate}
+                              onChange={(e) => updateCompra({ customRate: e.target.value })}
+                              placeholder={`${formatRate(rateCompra)}`}
+                              className="flex-1 px-2 py-1 rounded bg-zinc-800/80 border border-amber/40 text-zinc-100 text-xs font-mono nums outline-none min-w-0"
+                            />
+                          )}
+                        </div>
+                      )}
+                      {compra.currency !== "USD" && (
+                        <div className="text-right text-xs text-zinc-600 font-mono">
+                          = $<span className="text-zinc-300">{purchaseUsd.toFixed(2)}</span> USD
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Sale */}
+                  <div className="p-6 lg:p-8 rounded-xl bg-zinc-900/60 border border-zinc-800/60">
+                    <div className="flex items-center gap-2 mb-5">
+                      <TrendingUp size={14} className="text-amber" />
+                      <span className="text-[10px] font-mono text-zinc-500 tracking-widest">VENTA</span>
+                    </div>
+                    <div className="space-y-4">
+                      {modo === "margen" ? (
+                        <div className="grid grid-cols-[1fr_120px] gap-3">
+                          <div>
+                            <label className="block text-zinc-400 text-xs font-mono mb-1.5">Margen de ganancia</label>
+                            <div className="relative">
+                              <input
+                                type="number"
+                                step="0.1"
+                                min="0"
+                                value={margin}
+                                onChange={(e) => setMargin(e.target.value)}
+                                className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all pr-8"
+                              />
+                              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 font-mono text-sm">%</span>
+                            </div>
+                          </div>
+                          <div>
+                            <label className="block text-zinc-400 text-xs font-mono mb-1.5">Moneda</label>
+                            <select
+                              value={venta.currency}
+                              onChange={(e) => updateVenta({ currency: e.target.value })}
+                              className="w-full px-3 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-sm font-medium outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all appearance-none cursor-pointer"
+                            >
+                              {currencies.map((c) => (
+                                <option key={c} value={c}>{c}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-[1fr_120px] gap-3">
+                          <div>
+                            <label className="block text-zinc-400 text-xs font-mono mb-1.5">Precio de venta</label>
+                            <input
+                              type="number"
+                              step="0.01"
+                              min="0"
+                              value={salePrice}
+                              onChange={(e) => setSalePrice(e.target.value)}
+                              className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-zinc-400 text-xs font-mono mb-1.5">Moneda</label>
+                            <select
+                              value={venta.currency}
+                              onChange={(e) => updateVenta({ currency: e.target.value })}
+                              className="w-full px-3 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-sm font-medium outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all appearance-none cursor-pointer"
+                            >
+                              {currencies.map((c) => (
+                                <option key={c} value={c}>{c}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      )}
+
+                      {venta.currency !== "USD" && (
+                        <div className="flex items-center gap-2 p-3 rounded-lg bg-zinc-800/40 border border-zinc-700/40">
+                          <div className="flex gap-1 p-0.5 rounded-md bg-zinc-800/80">
+                            <button
+                              onClick={() => updateVenta({ tipoTasa: "api" })}
+                              className={`px-2 py-1 rounded text-[10px] font-mono font-medium transition-all ${
+                                venta.tipoTasa === "api" ? "bg-amber/20 text-amber" : "text-zinc-500"
+                              }`}
+                            >
+                              API
+                            </button>
+                            <button
+                              onClick={() => updateVenta({ tipoTasa: "manual" })}
+                              className={`px-2 py-1 rounded text-[10px] font-mono font-medium transition-all flex items-center gap-0.5 ${
+                                venta.tipoTasa === "manual" ? "bg-amber/20 text-amber" : "text-zinc-500"
+                              }`}
+                            >
+                              <Pencil size={8} />
+                              Manual
+                            </button>
+                          </div>
+                          {venta.tipoTasa === "api" ? (
+                            <span className="text-zinc-500 text-xs font-mono">
+                              1 USD = <span className="text-zinc-300">{formatRate(rateVenta)}</span> {venta.currency}
+                            </span>
+                          ) : (
+                            <input
+                              type="number"
+                              step="any"
+                              min="0"
+                              value={venta.customRate}
+                              onChange={(e) => updateVenta({ customRate: e.target.value })}
+                              placeholder={`${formatRate(rateVenta)}`}
+                              className="flex-1 px-2 py-1 rounded bg-zinc-800/80 border border-amber/40 text-zinc-100 text-xs font-mono nums outline-none min-w-0"
+                            />
+                          )}
+                        </div>
+                      )}
+                      {venta.currency !== "USD" && (
+                        <div className="text-right text-xs text-zinc-600 font-mono">
+                          = $<span className="text-zinc-300">{(venta.currency === "USD" ? parseFloat(salePrice || "0") : (modo === "margen" ? saleLocal : parseFloat(salePrice || "0")) / rateVenta).toFixed(2)}</span> USD
+                        </div>
+                      )}
+                      {modo === "margen" && (
+                        <div className="p-3 rounded-lg bg-amber/10 border border-amber/20 flex items-center justify-between">
                           <span className="text-zinc-400 text-xs font-mono">Precio de venta sugerido</span>
                           <span className="text-amber text-lg font-bold nums">
-                            {currency} {calculatedSalePrice || "—"}
+                            {venta.currency} {Number(calculatedSalePrice || 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </span>
                         </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <label className="block text-zinc-400 text-xs font-mono mb-1.5">Precio de venta (lo que cobras)</label>
-                        <input
-                          type="number"
-                          step="0.01"
-                          min="0"
-                          value={salePrice}
-                          onChange={(e) => setSalePrice(e.target.value)}
-                          className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all"
-                        />
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-zinc-400 text-xs font-mono mb-1.5">Moneda</label>
-                        <select
-                          value={currency}
-                          onChange={(e) => setCurrency(e.target.value)}
-                          className="w-full px-4 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-100 text-sm font-medium outline-none focus:border-amber/50 focus:ring-1 focus:ring-amber/30 transition-all appearance-none cursor-pointer"
-                        >
-                          {currencies.map((c) => (
-                            <option key={c} value={c}>
-                              {c}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-                      <div>
-                        <label className="block text-zinc-400 text-xs font-mono mb-1.5">Tasa de cambio</label>
-                        <div className="flex gap-1 p-1 rounded-lg bg-zinc-800/60 border border-zinc-700/60">
-                          <button
-                            onClick={() => setTipoTasa("api")}
-                            className={`flex-1 px-2 py-2 rounded-md text-xs font-mono font-medium transition-all ${
-                              tipoTasa === "api"
-                                ? "bg-amber/20 text-amber border border-amber/30"
-                                : "text-zinc-500 hover:text-zinc-300"
-                            }`}
-                          >
-                            API
-                          </button>
-                          <button
-                            onClick={() => setTipoTasa("manual")}
-                            className={`flex-1 px-2 py-2 rounded-md text-xs font-mono font-medium transition-all flex items-center justify-center gap-1 ${
-                              tipoTasa === "manual"
-                                ? "bg-amber/20 text-amber border border-amber/30"
-                                : "text-zinc-500 hover:text-zinc-300"
-                            }`}
-                          >
-                            <Pencil size={10} />
-                            Manual
-                          </button>
-                        </div>
-                      </div>
+                      )}
                     </div>
-
-                    {tipoTasa === "api" ? (
-                      <div className="p-4 rounded-lg bg-amber/5 border border-amber/20 flex items-center justify-between">
-                        <div className="flex items-center gap-2 text-zinc-400 text-xs font-mono">
-                          <Coins size={14} className="text-amber" />
-                          1 USD = {formattedApiRate} {currency}
-                        </div>
-                        <span className="text-[10px] text-zinc-600 font-mono">ExchangeRate API</span>
-                      </div>
-                    ) : (
-                      <div>
-                        <label className="block text-zinc-400 text-xs font-mono mb-1.5">
-                          Tu tasa (1 USD = ? {currency})
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="number"
-                            step="any"
-                            min="0"
-                            value={customRate}
-                            onChange={(e) => setCustomRate(e.target.value)}
-                            placeholder={`Ej: ${formattedApiRate}`}
-                            className="flex-1 px-4 py-3 rounded-lg bg-zinc-800/60 border border-amber/50 text-zinc-100 text-lg font-bold nums outline-none focus:border-amber focus:ring-1 focus:ring-amber/30 transition-all"
-                          />
-                          <button
-                            onClick={() => {
-                              if (apiRate) setCustomRate(String(apiRate));
-                            }}
-                            className="px-3 py-3 rounded-lg bg-zinc-800/60 border border-zinc-700/60 text-zinc-500 hover:text-zinc-300 font-mono text-xs transition-all"
-                            title="Usar tasa de la API"
-                          >
-                            <RefreshCw size={14} />
-                          </button>
-                        </div>
-                        {customRate && (
-                          <div className="mt-1 text-[11px] text-amber font-mono">
-                            1 USD = {parseFloat(customRate).toLocaleString()} {currency}
-                          </div>
-                        )}
-                      </div>
-                    )}
                   </div>
+
+                  {/* Cross rate indicator */}
+                  {compra.currency !== venta.currency && (
+                    <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800/50 flex items-center justify-between">
+                      <div className="flex items-center gap-2 text-zinc-400 text-xs font-mono">
+                        <ArrowLeftRight size={14} className="text-amber" />
+                        Tasa cruzada
+                      </div>
+                      <span className="text-zinc-300 text-sm font-mono nums">
+                        1 {compra.currency} = {crossRate.toFixed(6)} {venta.currency}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Results */}
@@ -293,9 +379,7 @@ export default function RateCalculator() {
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800/60">
                       <div className="text-zinc-500 text-xs font-mono mb-1">Pagaste (en USD)</div>
-                      <div className="text-zinc-100 text-xl font-bold nums">
-                        ${purchaseUsd.toFixed(2)}
-                      </div>
+                      <div className="text-zinc-100 text-xl font-bold nums">${purchaseUsd.toFixed(2)}</div>
                     </div>
 
                     <div className="flex items-center justify-center">
@@ -305,7 +389,7 @@ export default function RateCalculator() {
                     <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800/60">
                       <div className="text-zinc-500 text-xs font-mono mb-1">Cobrás (en USD)</div>
                       <div className="text-amber text-xl font-bold nums">
-                        ${profitUsd > 0 ? (purchaseUsd + profitUsd).toFixed(2) : "0.00"}
+                        ${(modo === "margen" ? purchaseUsd * (1 + parseFloat(margin || "0") / 100) : (venta.currency === "USD" ? parseFloat(salePrice || "0") : parseFloat(salePrice || "0") / rateVenta)).toFixed(2)}
                       </div>
                     </div>
 
@@ -313,9 +397,7 @@ export default function RateCalculator() {
 
                     <div className="p-5 rounded-lg bg-amber/10 border border-amber/30">
                       <div className="text-amber text-xs font-mono mb-1">GANANCIA EN USD</div>
-                      <div className="text-amber text-2xl font-black nums">
-                        ${profitUsd.toFixed(2)}
-                      </div>
+                      <div className="text-amber text-2xl font-black nums">${profitUsd.toFixed(2)}</div>
                     </div>
 
                     <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800/60 flex items-center justify-between">
@@ -328,12 +410,24 @@ export default function RateCalculator() {
                       </span>
                     </div>
 
-                    <div className="p-3 rounded-lg bg-zinc-900/40 border border-zinc-800/40">
-                      <div className="text-zinc-600 text-[10px] font-mono mb-1">TASA APLICADA</div>
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="text-zinc-400 font-mono">1 USD = {activeRate.toLocaleString()} {currency}</span>
-                        <span className={`text-[10px] font-mono ${tipoTasa === "api" ? "text-emerald-500" : "text-amber"}`}>
-                          {tipoTasa === "api" ? "API · Automática" : "Manual"}
+                    <div className="space-y-2 p-3 rounded-lg bg-zinc-900/40 border border-zinc-800/40">
+                      <div className="text-zinc-600 text-[10px] font-mono">TASAS APLICADAS</div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-zinc-500 font-mono">Compra: 1 USD</span>
+                        <span className="text-zinc-300 font-mono">
+                          = {formatRate(rateCompra)} {compra.currency}
+                          <span className={`ml-1 text-[10px] ${compra.tipoTasa === "api" ? "text-emerald-600" : "text-amber"}`}>
+                            ({compra.tipoTasa === "api" ? "API" : "Manual"})
+                          </span>
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-zinc-500 font-mono">Venta: 1 USD</span>
+                        <span className="text-zinc-300 font-mono">
+                          = {formatRate(rateVenta)} {venta.currency}
+                          <span className={`ml-1 text-[10px] ${venta.tipoTasa === "api" ? "text-emerald-600" : "text-amber"}`}>
+                            ({venta.tipoTasa === "api" ? "API" : "Manual"})
+                          </span>
                         </span>
                       </div>
                     </div>
