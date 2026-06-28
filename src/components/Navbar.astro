@@ -17,8 +17,8 @@ import { waUrl } from "../data/whatsapp";
     >
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
-        <img src="/assets/TiendaPoslogo1.png" alt="TiendaPOS" width="300" height="300" class="h-[72px] w-auto" />
-        <span class="font-display font-bold text-xl text-zinc-100 tracking-tight leading-none flex items-center">
+        <img src="/assets/TiendaPoslogo1.png" alt="TiendaPOS" width="300" height="300" class="h-[72px] w-auto transition-all duration-500 ease-out" data-navbar-logo />
+        <span class="font-display font-bold text-xl text-zinc-100 tracking-tight leading-none flex items-center transition-all duration-500 ease-out" data-navbar-title>
           {site.name}
         </span>
       </a>
@@ -141,8 +141,10 @@ import { waUrl } from "../data/whatsapp";
   const iconClose = document.querySelector("[data-icon-close]");
   const closeBtn = document.querySelector("#close-menu-btn");
   const mobileLinks = document.querySelectorAll("[data-mobile-link]");
+  const logo = document.querySelector("[data-navbar-logo]");
+  const title = document.querySelector("[data-navbar-title]");
 
-  // Scroll behavior
+  // Scroll behavior: shrink navbar + logo
   let scrolled = false;
   const onScroll = () => {
     const y = window.scrollY;
@@ -150,10 +152,18 @@ import { waUrl } from "../data/whatsapp";
       scrolled = true;
       inner?.classList.add("py-3");
       inner?.classList.remove("py-4", "lg:py-5");
+      logo?.classList.add("h-12");
+      logo?.classList.remove("h-[72px]");
+      title?.classList.add("text-lg");
+      title?.classList.remove("text-xl");
     } else if (y <= 30 && scrolled) {
       scrolled = false;
       inner?.classList.add("py-4", "lg:py-5");
       inner?.classList.remove("py-3");
+      logo?.classList.add("h-[72px]");
+      logo?.classList.remove("h-12");
+      title?.classList.add("text-xl");
+      title?.classList.remove("text-lg");
     }
   };
   window.addEventListener("scroll", onScroll, { passive: true });
