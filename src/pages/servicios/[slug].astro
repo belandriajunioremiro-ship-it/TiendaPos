@@ -18,7 +18,31 @@ const { servicio } = Astro.props;
 const otros = servicios.filter((s) => s.slug !== servicio.slug);
 ---
 
-<Base title={`${servicio.tituloH1} — ${site.name}`} description={servicio.metaDescripcion}>
+<Base title={`${servicio.tituloH1} — ${site.name}`} description={servicio.metaDescripcion} ldExtra={[
+    {
+      "@type": "Service",
+      name: servicio.tituloH1,
+      description: servicio.metaDescripcion,
+      provider: { "@type": "Organization", name: site.name },
+      areaServed: ["VE", "CO", "MX", "EC", "AR", "PE", "CL", "BO", "UY"],
+      serviceType: `Sistema POS para ${servicio.titulo}`,
+      offers: {
+        "@type": "AggregateOffer",
+        lowPrice: "0",
+        highPrice: "45",
+        priceCurrency: "USD",
+      },
+    },
+    {
+      "@type": "BreadcrumbList",
+      name: "Navegación",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: "https://tiendapos-app.vercel.app/" },
+        { "@type": "ListItem", position: 2, name: "Servicios", item: "https://tiendapos-app.vercel.app/servicios" },
+        { "@type": "ListItem", position: 3, name: servicio.titulo, item: `https://tiendapos-app.vercel.app/servicios/${servicio.slug}` },
+      ],
+    },
+  ]}>
   <Navbar />
 
   <main>

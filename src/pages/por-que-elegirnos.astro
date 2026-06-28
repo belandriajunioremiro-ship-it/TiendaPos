@@ -25,7 +25,17 @@ import {
 
 <Base
   title={`Por qué elegir TiendaPOS — ${site.name}`}
-  description={`Multi-tenant real con aislamiento PostgreSQL, 15 monedas, IGTF automático, roles y permisos por usuario. La plataforma POS más completa para LATAM.`}
+  description={`Multi-tenant real con aislamiento PostgreSQL, 15 monedas, IGTF automático, roles y permisos Spatie. La plataforma POS más completa para LATAM.`}
+  ldExtra={[
+    {
+      "@type": "BreadcrumbList",
+      name: "Navegación",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: "https://tiendapos-app.vercel.app/" },
+        { "@type": "ListItem", position: 2, name: "Por qué elegirnos", item: "https://tiendapos-app.vercel.app/por-que-elegirnos" },
+      ],
+    },
+  ]}
 >
   <Navbar />
 

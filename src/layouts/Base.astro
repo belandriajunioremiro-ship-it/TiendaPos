@@ -6,28 +6,39 @@ import WhatsAppChat from "../components/WhatsAppChat";
 interface Props {
   title?: string;
   description?: string;
+  ldExtra?: Record<string, unknown>[];
 }
 
 const {
   title = `${site.name} — ${site.tagline}`,
   description = site.description,
+  ldExtra = [],
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = `${Astro.site}og-image.png`;
+const siteUrl = Astro.site?.href || "https://tiendapos-app.vercel.app/";
 
 const ldWebSite = {
   "@type": "WebSite",
   name: site.name,
-  url: Astro.site?.href || "https://tiendapos-app.vercel.app/",
+  url: siteUrl,
+  description: site.description,
+  inLanguage: "es",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: { "@type": "EntryPoint", urlTemplate: `${siteUrl}?s={search_term_string}` },
+    "query-input": "required name=search_term_string",
+  },
 };
 
 const ldOrganization = {
   "@type": "Organization",
   name: site.name,
-  url: Astro.site?.href || "https://tiendapos-app.vercel.app/",
+  url: siteUrl,
   description: site.description,
   logo: `${Astro.site}og-image.png`,
+  foundingDate: "2025",
   address: {
     "@type": "PostalAddress",
     streetAddress: site.direccion,
@@ -41,7 +52,11 @@ const ldOrganization = {
     telephone: site.whatsapp,
     contactType: "customer service",
     email: site.email,
+    availableLanguage: ["Spanish"],
   },
+  sameAs: [
+    `https://wa.me/${site.whatsapp?.replace(/[^0-9]/g, "") || "584247253544"}`,
+  ],
 };
 
 const ldSoftware = {
@@ -50,17 +65,30 @@ const ldSoftware = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description: site.description,
+  applicationSuite: "TiendaPOS",
+  countriesSupported: "VE,CO,MX,EC,AR,PE,CL,BO,UY",
+  featureList: "Multi-tenant, Multi-moneda 15 divisas, IGTF automático, Control de inventario, Ventas al crédito, Cierre de caja multimoneda, Roles y permisos, Dashboard KPIs",
+  screenshot: `${Astro.site}og-image.png`,
   offers: {
-    "@type": "Offer",
-    price: "0",
+    "@type": "AggregateOffer",
+    lowPrice: "0",
+    highPrice: "45",
     priceCurrency: "USD",
-    priceValidUntil: "2027-12-31",
+    offerCount: 4,
   },
+};
+
+const ldBreadcrumb = {
+  "@type": "BreadcrumbList",
+  name: "Navegación",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: siteUrl },
+  ],
 };
 
 const ldGraph = {
   "@context": "https://schema.org",
-  "@graph": [ldWebSite, ldOrganization, ldSoftware],
+  "@graph": [ldWebSite, ldOrganization, ldSoftware, ldBreadcrumb, ...ldExtra],
 };
 
 const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}</script>`;
