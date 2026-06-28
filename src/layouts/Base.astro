@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { site } from "../data/content";
 import WhatsAppChat from "../components/WhatsAppChat";
+import GoogleRating from "../components/GoogleRating.astro";
 
 interface Props {
   title?: string;
@@ -167,13 +168,6 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
     <!-- Theme color -->
     <meta name="theme-color" content="#0A0A0B" />
 
-    <!-- Google Customer Reviews — Merchant Widget -->
-    <script id="merchantWidgetScript" src="https://www.gstatic.com/shopping/merchant/merchantwidget.js" defer></script>
-    <script>
-      merchantWidgetScript.addEventListener("load", function () {
-        merchantwidget.start({ position: "RIGHT_BOTTOM" });
-      });
-    </script>
   </head>
   <body class="antialiased">
     <!-- Scroll progress bar -->
@@ -218,6 +212,7 @@ const ldScript = `<script type="application/ld+json">${JSON.stringify(ldGraph)}<
     </script>
 
     <WhatsAppChat client:idle />
+    <GoogleRating />
 
     <script>
       import { gsap } from "gsap";
