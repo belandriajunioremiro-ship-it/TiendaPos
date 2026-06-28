@@ -1,0 +1,333 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { site, tiendasTenant } from "../data/content";
+import { waUrl } from "../data/whatsapp";
+import {
+  ArrowRight,
+  Check,
+  Shield,
+  Database,
+  Globe,
+  Code,
+  Users,
+  Layers,
+  Zap,
+  Server,
+  CreditCard,
+  Lock,
+  Building2,
+  GitBranch,
+  Cpu,
+} from "lucide-astro";
+---
+
+<Base
+  title={`Por qué elegir TiendaPOS — ${site.name}`}
+  description={`Multi-tenant real con aislamiento PostgreSQL, 15 monedas, IGTF automático, 112 endpoints API, roles y permisos Spatie. La plataforma POS más completa para LATAM.`}
+>
+  <Navbar />
+
+  <main>
+    <!-- Hero -->
+    <section class="relative overflow-hidden pt-32 sm:pt-36 lg:pt-44 pb-16 sm:pb-20 bg-dark-primary">
+      <div class="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
+      <div class="absolute top-1/3 -left-32 w-96 h-96 bg-amber/10 rounded-full blur-[100px] pointer-events-none" />
+      <div class="container-main relative">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber/10 border border-amber/20 text-amber text-xs font-mono mb-4">
+            <Cpu size={12} />
+            ARQUITECTURA MULTI-TENANT REAL
+          </div>
+          <h1 class="text-zinc-100 text-[2rem] sm:text-[2.5rem] md:text-[3.5rem] font-display font-black leading-[1.1] mb-4">
+            No es un POS cualquiera.<br />
+            <span class="text-amber">Es una plataforma.</span>
+          </h1>
+          <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl leading-relaxed">
+            TiendaPOS no es un sistema de caja común. Es una plataforma SaaS construida con arquitectura multi-tenant real,
+            PostgreSQL con aislamiento por tienda, 112 endpoints API REST, multimoneda, IGTF automático y
+            roles granulares. Esto es lo que nos diferencia.
+          </p>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <a href={waUrl("Hola, quiero empezar mi prueba gratis y ver por qué TiendaPOS es diferente")} target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-amber text-zinc-900 font-semibold text-sm hover:bg-amber-dark transition-all">
+              Probar gratis 14 días
+              <ArrowRight size={16} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Multi-tenant real -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-4">
+              <Shield size={12} />
+              AISLAMIENTO TOTAL
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+              Multi-tenant real.<br />
+              <span class="text-amber">No multi-tenant de mentira.</span>
+            </h2>
+            <p class="text-zinc-400 leading-relaxed mb-6">
+              Muchos sistemas se venden como "multi-tenant" pero solo filtran por un campo
+              <span class="text-zinc-300 font-mono text-sm"> tienda_id </span>
+              en cada consulta. TiendaPOS usa aislamiento real por tenant con el trait
+              <span class="text-zinc-300 font-mono text-sm"> BelongsToTienda </span>
+              que aplica automáticamente
+              <span class="text-zinc-300 font-mono text-sm"> WHERE tienda_id = X </span>
+              en <strong class="text-zinc-200">todas</strong> las consultas del modelo.
+            </p>
+            <p class="text-zinc-400 leading-relaxed mb-8">
+              Esto significa que una tienda <strong class="text-zinc-200">nunca</strong> puede ver los datos de otra,
+              ni siquiera por un error de código. Cada tenant opera en su burbuja con datos completamente aislados
+              a nivel de base de datos.
+            </p>
+            <ul class="space-y-3">
+              {[
+                "Cada tienda tiene sus propios productos, clientes, ventas e inventario",
+                "Aislamiento en PostgreSQL: no hay riesgo de fuga de datos entre tenants",
+                "Panel central con reportes consolidados para dueños de cadenas",
+                "Escalá desde 1 tienda hasta cientos sin migrar de plataforma",
+              ].map((item) => (
+                <li class="flex items-start gap-3 text-zinc-300 text-sm">
+                  <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center mt-0.5">
+                    <Check size={12} class="text-emerald-400" />
+                  </div>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Panel visual multi-tenant -->
+          <div>
+            <div class="rounded-xl overflow-hidden bg-zinc-900/80 border border-zinc-800 shadow-xl">
+              <div class="flex items-center justify-between px-5 py-3 border-b border-zinc-800 bg-zinc-900/50">
+                <div class="flex items-center gap-2">
+                  <Building2 size={14} class="text-amber" />
+                  <span class="label-tag text-zinc-500">TIENDAS CONECTADAS</span>
+                </div>
+                <span class="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-500/15 border border-emerald-500/30 rounded text-emerald-400 text-[10px] font-mono">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  {tiendasTenant.length} ACTIVAS
+                </span>
+              </div>
+              <div class="p-4 space-y-3">
+                {tiendasTenant.map((t) => (
+                  <div class="flex items-center justify-between p-4 rounded-lg bg-zinc-800/40 border border-zinc-700/50">
+                    <div>
+                      <div class="text-zinc-100 font-medium">{t.nombre}</div>
+                      <div class="text-zinc-500 text-sm font-mono mt-1">{t.pais} • {t.usuarios} usuarios</div>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-amber nums text-lg font-bold">{t.ventas}</div>
+                      <div class="text-emerald-400 text-[10px] font-mono uppercase mt-0.5">{t.estado}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div class="flex items-center gap-2 px-5 py-3 border-t border-zinc-800 bg-zinc-900/50">
+                <Lock size={14} class="text-emerald-500" />
+                <span class="label-tag text-zinc-500">DATOS AISLADOS POR TENANT • POSTGRESQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid de razones técnicas -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main">
+        <div class="text-center mb-14">
+          <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-3">
+            Razones técnicas para elegirnos
+          </h2>
+          <p class="text-zinc-500 max-w-lg mx-auto">
+            Esto no es marketing. Son capacidades reales de nuestra plataforma.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            {
+              icono: Database,
+              titulo: "PostgreSQL con transacciones reales",
+              desc: "No usamos SQLite ni MySQL. PostgreSQL 16 con Neon.tech, transacciones ACID, particionado por año en tablas de auditoría y movimientos de inventario, índices GIN para búsqueda textual y funciones PL/pgSQL.",
+              detalles: "42 tablas de negocio • 6 vistas • triggers automáticos • particionado 2025-2028",
+            },
+            {
+              icono: Globe,
+              titulo: "Multimoneda real con snapshots inmutables",
+              desc: "15 monedas con tasas automáticas vía ExchangeRate API. Cada venta guarda monto_original + tasa_usada + monto_en_base. Los reportes no cambian aunque la tasa se mueva. Cross-rate automático entre cualquier par de monedas.",
+              detalles: "9 monedas LATAM • USD • EUR • GBP • BRL • USDT • BTC",
+            },
+            {
+              icono: Code,
+              titulo: "112 endpoints API REST",
+              desc: "No es un sistema cerrado. Es una API completa con Laravel 11 + Sanctum. Podés conectar tu propio frontend, apps móviles o integraciones. Documentación completa de cada endpoint con filtros, middleware y respuestas.",
+              detalles: "Productos • Ventas • Clientes • Caja • Inventario • Créditos • Reportes",
+            },
+            {
+              icono: Users,
+              titulo: "Roles y permisos Spatie",
+              desc: "3 roles predefinidos (admin, supervisor, cajero) con 69 permisos granulares. El admin puede anular ventas, el supervisor solo ver reportes, el cajero solo vender y cobrar. Cada acción validada por middleware.",
+              detalles: "admin: * • supervisor: ventas, inventario, caja, créditos, reportes • cajero: ventas, caja, clientes",
+            },
+            {
+              icono: Layers,
+              titulo: "Onboarding en 4 pasos",
+              desc: "De registro a primera venta en minutos. Paso 1: crear cuenta. Paso 2: datos fiscales (RIF/NIT/RFC según país). Paso 3: configurar negocio (almacén, caja, categorías). Paso 4: primer producto. Auto-siembra de impuestos, monedas y métodos de pago por país.",
+              detalles: "9 países • auto-siembra de IVA/IGV • tasas iniciales • categorías por rubro",
+            },
+            {
+              icono: CreditCard,
+              titulo: "IGTF 3% automático configurable",
+              desc: "Cumplimiento fiscal venezolano sin esfuerzo. Configurás qué métodos de pago gravan IGTF (USD efectivo, Zelle, USDT) y cuáles no (pago móvil VES, transferencia). El sistema calcula, muestra en línea aparte y suma al total.",
+              detalles: "es_agente_igtf • alícuota configurable • snapshot por venta • línea separada del IVA",
+            },
+            {
+              icono: Zap,
+              titulo: "Triggers automáticos en PostgreSQL",
+              desc: "Reglas de negocio ejecutadas en la base de datos, no en la aplicación. Cuando recibís un abono de crédito, el trigger recalcula saldo_pendiente y saldo_usado al instante. Consistencia garantizada a nivel de base de datos.",
+              detalles: "fn_recalcular_saldo_credito • fn_tasa_entre • fn_actualizar_timestamp",
+            },
+            {
+              icono: Server,
+              titulo: "Suscripciones SaaS con límites por plan",
+              desc: "4 planes con límites configurables: productos, usuarios, almacenes, cajas. Middleware que valida antes de crear recursos. Trials de 14 días con vencimiento automático. Jobs programados para limpieza y notificaciones.",
+              detalles: "Trial: 50 • Básico: 200-500 • Pro: 1,000-5,000 • Premium: ilimitado",
+            },
+            {
+              icono: GitBranch,
+              titulo: "Frontend moderno: Next.js + Zustand",
+              desc: "El frontend de referencia usa Next.js 14 App Router, Zustand para estado global y React Query para caché de servidor. No es un monstruo de jQuery. Código limpio, tipado con TypeScript, componentizado.",
+              detalles: "App Router • Server Components • TypeScript • Tailwind CSS",
+            },
+          ].map((r) => (
+            <div class="p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/60 hover:border-amber/20 transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-amber/10 flex items-center justify-center mb-4 group-hover:bg-amber/20 transition-all">
+                <r.icono size={18} class="text-amber" />
+              </div>
+              <h3 class="font-display font-bold text-zinc-100 mb-2">{r.titulo}</h3>
+              <p class="text-zinc-400 text-sm leading-relaxed mb-3">{r.desc}</p>
+              <div class="text-[10px] font-mono text-zinc-600 bg-zinc-800/50 px-2 py-1 rounded inline-block">
+                {r.detalles}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Lo que NO somos -->
+    <section class="py-16 lg:py-20 bg-dark-secondary">
+      <div class="container-main">
+        <div class="grid lg:grid-cols-2 gap-14 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-mono mb-4">
+              <Lock size={12} />
+              SIN TRAMPA
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+              Esto es lo que <span class="text-amber">NO</span> somos
+            </h2>
+            <div class="space-y-4">
+              {[
+                {
+                  que: "Un POS de caja cerrado",
+                  contra: "Tenés API, podés conectar lo que quieras. No dependés de nosotros para integrar.",
+                },
+                {
+                  que: "SQLite compartido",
+                  contra: "PostgreSQL 16 con aislamiento real por tenant. Cada tienda opera en su burbuja.",
+                },
+                {
+                  que: "Sistema moneda única",
+                  contra: "15 monedas, pagos mixtos multimoneda, IGTF, tasas automáticas. No solo USD.",
+                },
+                {
+                  que: "Código espagueti",
+                  contra: "Laravel 11 + Next.js 14 + TypeScript + Zustand + React Query. Arquitectura limpia.",
+                },
+                {
+                  que: "Sin control de acceso",
+                  contra: "Roles Spatie con 69 permisos, middlewares por capa, tokens Sanctum con abilities.",
+                },
+                {
+                  que: "Facturación fiscal certificada",
+                  contra: "No mentimos. No somos un sistema fiscal certificado. Somos un POS que cumple requisitos formales.",
+                },
+              ].map((item) => (
+                <div class="flex gap-4 p-4 rounded-lg bg-zinc-900/40 border border-zinc-800/40">
+                  <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center mt-0.5">
+                    <span class="text-red-400 text-xs font-bold">X</span>
+                  </div>
+                  <div>
+                    <div class="text-zinc-200 font-medium mb-0.5">{item.que}</div>
+                    <div class="text-zinc-500 text-sm">{item.contra}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-4">
+              <Check size={12} />
+              LO QUE SÍ SOMOS
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+              Una plataforma que <span class="text-amber">sí cumple</span>
+            </h2>
+            <div class="space-y-4">
+              {[
+                "Plataforma SaaS multi-tenant con PostgreSQL",
+                "Multimoneda real con snapshots inmutables",
+                "API REST con 112 endpoints para integrar",
+                "IGTF automático para Venezuela",
+                "Roles y permisos granulares (admin, supervisor, cajero)",
+                "Onboarding en 4 pasos con auto-siembra por país",
+                "Suscripciones con trials, límites y planes",
+                "Frontend moderno: Next.js + Zustand + React Query",
+                "Control de inventario con lotes FEFO",
+                "Crédito y fiado con abonos multimoneda",
+                "Cierre de caja con desglose por moneda",
+                "Notificaciones automáticas y jobs programados",
+              ].map((item) => (
+                <div class="flex items-start gap-3">
+                  <div class="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center mt-0.5">
+                    <Check size={12} class="text-emerald-400" />
+                  </div>
+                  <span class="text-zinc-300 text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 lg:py-20 bg-dark-primary">
+      <div class="container-main text-center">
+        <h2 class="text-2xl sm:text-3xl font-display font-bold text-zinc-100 mb-4">
+          No es un POS. Es tu plataforma de negocios.
+        </h2>
+        <p class="text-zinc-400 max-w-lg mx-auto mb-8">
+          14 días gratis. Sin tarjeta de crédito. Acceso completo a todas las funciones del plan Pro.
+        </p>
+        <a href={waUrl("Hola, quiero probar TiendaPOS gratis 14 días")} target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-lg bg-amber text-zinc-900 font-bold text-base hover:bg-amber-dark transition-all">
+          Probar gratis ahora
+          <ArrowRight size={18} />
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
