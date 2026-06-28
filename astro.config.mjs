@@ -13,7 +13,7 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date('2026-06-28'),
+      lastmod: new Date(),
       filter: (page) => !page.includes('/404'),
       serialize: (page) => {
         if (page.url === "https://tiendapos-app.vercel.app/") {
