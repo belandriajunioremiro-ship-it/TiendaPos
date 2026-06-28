@@ -1,6 +1,4 @@
 ---
-const waUrl = "https://wa.me/584247253544?text=Hola%20quiero%20unirme%20a%20la%20lista%20de%20espera";
----
 
 <dialog
   id="waitlist-modal"
@@ -26,29 +24,28 @@ const waUrl = "https://wa.me/584247253544?text=Hola%20quiero%20unirme%20a%20la%2
       </div>
 
       <h2 class="text-xl sm:text-2xl font-display font-bold text-zinc-100 mb-2">
-        🚀 Únete a la lista de espera
+        ¡Estamos construyendo la app perfecta para tu negocio!
       </h2>
       <p class="text-sm sm:text-base text-zinc-400 mb-6 max-w-sm leading-relaxed">
-        Sé de los primeros en probar las nuevas funciones y accede a contenido exclusivo antes que nadie.
+        Gracias por visitarnos. TiendaPOS está en su fase final de desarrollo. No te quedes con la duda, escríbenos y te contamos cómo adelantarte.
       </p>
 
       <a
-        href={waUrl}
+        href="https://wa.me/584247253544?text=Hola%20TiendaPOS!%20Vengo%20desde%20la%20web%20y%20quiero%20saber%20m%C3%A1s%20sobre%20la%20app."
         target="_blank"
         rel="noopener noreferrer"
-        class="group relative w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all duration-300"
-        style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); color: #0A0A0B;"
+        class="group relative w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-2xl font-bold text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+        style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #fff; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);"
       >
-        <span class="absolute inset-0 rounded-xl bg-amber/30 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
-        <span class="relative">Unirme a la lista por WhatsApp</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <span class="absolute inset-0 rounded-2xl bg-white/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+        <span class="relative">💬 Chatear por WhatsApp</span>
       </a>
     </div>
   </div>
 </dialog>
 
 <script>
-  const MODAL_DELAY = 20000;
+  const MODAL_DELAY = 10000;
   const MODAL_COOKIE = "waitlist_shown";
 
   const dialog = document.getElementById("waitlist-modal") as HTMLDialogElement;
