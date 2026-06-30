@@ -9,47 +9,42 @@ const icons = [UserPlus, FileText, Store, Package];
   <div class="absolute inset-0 dot-pattern opacity-20 pointer-events-none" />
   <div class="absolute top-0 left-1/4 w-64 h-64 bg-amber/5 rounded-full blur-3xl pointer-events-none" />
 
-  <div class="max-w-full px-4 sm:px-6 lg:px-8 relative">
-    <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mb-12">
-        <h2 class="gsap-fade-up text-zinc-100">
-          De cero a tu primera venta<br />
-          <span class="text-zinc-500">en 4 pasos</span>
-        </h2>
-        <p class="gsap-fade-up mt-5 text-lg text-zinc-400 max-w-2xl" style="transition-delay: 0.1s;">
-          Sin configurar impuestos a mano ni perder horas en Excel. Elige tu país, tu negocio y empieza a facturar como un profesional.
-        </p>
-      </div>
+  <div class="container-main relative">
+    <div class="max-w-3xl mb-12">
+      <h2 class="gsap-fade-up text-zinc-100">
+        De cero a tu primera venta<br />
+        <span class="text-zinc-500">en 4 pasos</span>
+      </h2>
+      <p class="gsap-fade-up mt-5 text-lg text-zinc-400 max-w-2xl" style="transition-delay: 0.1s;">
+        Sin configurar impuestos a mano ni perder horas en Excel. Elige tu país, tu negocio y empieza a facturar como un profesional.
+      </p>
+    </div>
 
-      <div class="gsap-stagger grid sm:grid-cols-2 border border-zinc-800/60 rounded-xl overflow-hidden">
-        {pasosOnboarding.map((p, i) => {
-          const Icon = icons[i];
-          return (
-            <div class={`relative p-6 sm:p-8 lg:p-10 flex flex-col items-start text-left ${i < 2 ? "border-b border-zinc-800/60" : ""} ${i % 2 === 0 ? "sm:border-r sm:border-zinc-800/60" : ""}`}>
-              <div class="flex items-center gap-4 mb-5 w-full">
-                <div class="w-12 h-12 rounded-xl bg-amber/10 border border-amber/20 flex items-center justify-center shrink-0">
-                  <Icon size={22} class="text-amber" />
-                </div>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs text-zinc-500 font-mono font-medium tracking-wider uppercase">
-                    Paso {(i + 1).toString().padStart(2, '0')}
-                  </span>
-                  <span class="w-px h-4 bg-zinc-700/60" />
-                  <span class="text-xs text-amber font-mono font-semibold">
-                    {p.tiempo}
-                  </span>
-                </div>
-              </div>
-              <h3 class="text-zinc-100 font-display font-bold text-xl mb-3">
-                {p.titulo}
-              </h3>
-              <p class="text-sm text-zinc-400 leading-relaxed">
-                {p.detalle}
-              </p>
+    <div class="gsap-stagger grid md:grid-cols-2 gap-5">
+      {pasosOnboarding.map((p, i) => {
+        const Icon = icons[i];
+        return (
+          <div class="group relative p-6 lg:p-8 pt-10 rounded-xl border transition-all duration-300 hover-glow bg-zinc-900/60 border-zinc-800/60 hover:border-amber/30">
+            <div class="absolute top-0 right-0 px-3 py-1.5 rounded-tr-xl rounded-bl-lg bg-amber text-zinc-900 text-[11px] font-mono font-bold">
+              PASO {String(i + 1).padStart(2, "0")}
             </div>
-          );
-        })}
-      </div>
+            <div class="absolute top-0 left-0 px-3 py-1.5 rounded-tl-xl rounded-br-lg bg-zinc-700/80 text-zinc-300 text-[10px] font-mono font-bold">
+              {p.tiempo}
+            </div>
+
+            <div class="w-12 h-12 rounded-full bg-amber/10 border border-amber/30 flex items-center justify-center text-amber mb-5">
+              <Icon size={24} />
+            </div>
+
+            <h3 class="text-zinc-100 font-semibold text-xl mb-3">
+              {p.titulo}
+            </h3>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+              {p.detalle}
+            </p>
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>
