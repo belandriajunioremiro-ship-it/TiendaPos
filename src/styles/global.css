@@ -57,7 +57,7 @@
   --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
 
   /* Modern Type Scale */
-  --text-hero: clamp(2.25rem, 5vw, 3.5rem);
+  --text-hero: clamp(2rem, 4.5vw, 3rem);
   --text-display: clamp(2rem, 4vw, 3rem);
   --text-headline: clamp(1.5rem, 3vw, 2.25rem);
   --text-title: clamp(1.25rem, 2vw, 1.5rem);
