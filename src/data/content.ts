@@ -5,7 +5,7 @@ export const site = {
   name: "TiendaPOS",
   tagline: "Sistema POS Multi-País para Latinoamérica",
   description:
-    "Sistema POS multi-país y multi-moneda con IGTF automático. Ideal para farmacias, abastos, ferreterías, licorerías, tiendas de ropa y más. Prueba gratis.",
+    "Sistema POS multi-país. TiendaPOS controla inventario, cobra con IGTF automático y adapta tu punto de venta a 9 países LATAM. Prueba 14 días gratis.",
   whatsapp: "+58 424-725-3544",
   email: "hola@tiendapos.com",
   rif: "J-12345678-9",
@@ -243,7 +243,7 @@ export const faq = [
   },
   {
     q: "¿TiendaPOS sirve para mi farmacia?",
-    a: "Sí. TiendaPOS tiene control de lotes con fechas de vencimiento, alertas FEFO, campos por principio activo y dosis, y seguimiento de productos controlados. Todo pre-configurado para farmacias.",
+    a: "Sí. Si estás buscando una tienda pos para farmacias, TiendaPOS tiene control de lotes con fechas de vencimiento, alertas FEFO, campos por principio activo y dosis, y seguimiento de productos controlados. Todo pre-configurado para farmacias.",
   },
   {
     q: "¿TiendaPOS funciona para abastos y bodegas?",
