@@ -124,7 +124,7 @@ const negocios = [
         return (
           <div class={`gsap-fade-up grid lg:grid-cols-2 gap-8 lg:gap-14 items-center`} style={`transition-delay: ${i * 0.1}s`}>
             <!-- Text -->
-            <div class="lg:order-2">
+            <div class={`${isLeft ? "lg:order-2" : "lg:order-1"}`}>
               <div class="flex items-center gap-3 mb-4">
                 <div class="w-10 h-10 rounded-xl bg-amber/15 border border-amber/30 flex items-center justify-center">
                   <Icon size={20} class="text-amber" />
@@ -154,12 +154,12 @@ const negocios = [
             </div>
 
             <!-- Visual: imagen del rubro -->
-            <div class="gsap-scale-in lg:order-1" style={`transition-delay: ${i * 0.1}s`}>
-              <div class="relative w-full aspect-square rounded-xl overflow-hidden">
+            <div class={`gsap-scale-in ${isLeft ? "lg:order-1" : "lg:order-2"}`} style={`transition-delay: ${i * 0.1}s`}>
+              <div class="relative w-full h-80 sm:h-96 lg:h-[400px] rounded-xl overflow-hidden bg-zinc-900">
                 <img
                   src={n.img}
                   alt={`Fachada de ${n.titulo} - TiendaPOS`}
-                  class="absolute inset-0 w-full h-full object-cover"
+                  class="absolute inset-0 w-full h-full object-contain p-2"
                   loading="lazy"
                   width="500" height="500"
                 />
