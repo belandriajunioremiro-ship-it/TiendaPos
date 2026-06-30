@@ -3,7 +3,7 @@
 
 export const site = {
   name: "TiendaPOS",
-  tagline: "Sistema POS Multi-País para Farmacias, Abastos y Ferreterías",
+  tagline: "Sistema de Punto de Venta Multi-País para Latinoamérica",
   description:
     "Sistema POS multi-país para farmacias, ferreterías, abastos y licorerías en LATAM. Multi-moneda, IGTF automático y control de inventario. Prueba gratis.",
   whatsapp: "+58 424-725-3544",
