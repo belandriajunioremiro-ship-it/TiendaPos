@@ -159,7 +159,7 @@ const negocios = [
                 <img
                   src={n.img}
                   alt={`Fachada de ${n.titulo} - TiendaPOS`}
-                  class="absolute inset-0 w-full h-full object-cover scale-x-[-1]"
+                  class={`absolute inset-0 w-full h-full object-cover ${n.titulo === "Mini Market" ? "scale-x-[-1]" : ""}`}
                   loading="lazy"
                   width="500" height="500"
                 />
