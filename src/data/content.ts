@@ -3,9 +3,9 @@
 
 export const site = {
   name: "TiendaPOS",
-  tagline: "Sistema POS Multi-País para Farmacias, Abastos y Más",
+  tagline: "El POS Definitivo para tu Negocio en LATAM",
   description:
-    "Punto de venta multi-moneda con IGTF automático, control de inventario y facturación adaptada a Venezuela, Colombia, México y 6 países más. Prueba gratis 14 días.",
+    "Sistema de punto de venta multi-país, multi-moneda con IGTF automático, control de inventario y facturación adaptada a Venezuela, Colombia, México y más. Ideal para farmacias, abastos, ferreterías, licorerías, tiendas de ropa y cualquier comercio. Prueba gratis 14 días.",
   whatsapp: "+58 424-725-3544",
   email: "hola@tiendapos.com",
   rif: "J-12345678-9",
