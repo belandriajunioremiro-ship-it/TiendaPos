@@ -155,7 +155,7 @@ const negocios = [
 
             <!-- Visual: imagen del rubro -->
             <div class={`gsap-scale-in ${isLeft ? "lg:order-1" : "lg:order-2"}`} style={`transition-delay: ${i * 0.1}s`}>
-              <div class="relative w-full h-80 sm:h-96 lg:h-[400px] overflow-hidden">
+              <div class="relative w-full h-96 sm:h-[400px] lg:h-[500px] overflow-hidden">
                 <img
                   src={n.img}
                   alt={`Fachada de ${n.titulo} - TiendaPOS`}
@@ -163,14 +163,6 @@ const negocios = [
                   loading="lazy"
                   width="500" height="500"
                 />
-                <div class="absolute bottom-4 left-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-lg bg-amber/20 backdrop-blur-sm flex items-center justify-center">
-                      <Icon size={16} class="text-amber" />
-                    </div>
-                    <span class="text-zinc-100 font-display font-bold text-lg">{n.titulo}</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
